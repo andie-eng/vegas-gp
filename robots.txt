@@ -1,2 +1,15 @@
+# Search engines: stay out (the page also carries noindex, nofollow).
+# Link previews (Slack, iMessage, WhatsApp, LinkedIn, X, Facebook) may read it.
+User-agent: Slackbot
+User-agent: Slackbot-LinkExpanding
+User-agent: Twitterbot
+User-agent: facebookexternalhit
+User-agent: LinkedInBot
+User-agent: WhatsApp
+User-agent: Applebot
+User-agent: Discordbot
+User-agent: TelegramBot
+Allow: /
+
 User-agent: *
 Disallow: /
