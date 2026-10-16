@@ -7,6 +7,7 @@
 | hero-track.jpg | Race start, Las Vegas Strip Circuit (hero) |
 | clubhouse.jpg | HGV Zone clubhouse trackside at Elara |
 | hotels/elara.jpg | Elara, a Hilton Grand Vacations Club, at dusk |
+| hotels/polo-towers.jpg | Polo Towers, 3745 Las Vegas Blvd S (supplied by Andie, 16 Oct) |
 
 These came from Hugo's event partners, not a stock library; confirm usage rights with HGV before the page goes to guests.
 
