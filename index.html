@@ -98,6 +98,8 @@
       linear-gradient(90deg, rgba(10,10,11,0.55) 0%, rgba(10,10,11,0) 60%);
   }
   @keyframes drift { from { transform: scale(1.04) translate3d(0, 0, 0); } to { transform: scale(1.1) translate3d(-1.5%, 1%, 0); } }
+  .hero-logo { height: 40px; margin-bottom: 22px; filter: drop-shadow(0 2px 12px rgba(0,0,0,.45)); }
+  @media (max-width: 520px) { .hero-logo { height: 32px; margin-bottom: 16px; } }
   .hero h1 {
     font-size: clamp(32px, 7vw, 88px); max-width: 12ch; text-wrap: balance; overflow-wrap: anywhere;
     text-shadow: 0 2px 40px rgba(0, 0, 0, 0.45);
@@ -378,7 +380,7 @@
     <div class="bg" role="img" aria-label="The race start on the Las Vegas Strip Circuit"></div>
     <div class="shade"></div>
     <div class="wrap">
-      <p class="eyebrow">Hugo invites you</p>
+      <svg class="logo hero-logo" viewBox="0 0 99 52" aria-label="Hugo"><use href="#hugo-logo"/></svg>
       <h1><span class="hi skel" id="hi">Hi there,</span><span id="h1-title">welcome to your Grand&nbsp;Prix Weekend in&nbsp;Vegas</span></h1>
       <div class="meta">
         <span class="chip"><span class="dot"></span><span id="chip-dates">Nov 18–22, 2026</span></span>
