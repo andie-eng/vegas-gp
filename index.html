@@ -218,6 +218,8 @@
   .stay .notes { margin-top: 22px; color: var(--muted); font-size: 16px; }
   .stay .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
   .empty { border: 1px dashed var(--line-strong); border-radius: var(--radius); padding: 28px; color: var(--muted); }
+  .skel-pic { background: linear-gradient(90deg, #18181b, #232327, #18181b) !important; background-size: 200% 100% !important; animation: shimmer 1.4s linear infinite; }
+  .skel-line { height: 22px; border-radius: 8px; margin-top: 16px; background: linear-gradient(90deg, #1c1c1f, #2a2a2e, #1c1c1f); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; }
 
   /* ---------- travel / car ---------- */
   .travel .grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
@@ -448,7 +450,7 @@
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Your stay</p>
-        <h2>Where you're sleeping</h2>
+        <h2>Your pit stop</h2>
       </div>
       <div id="stay-slot"></div>
     </div>
@@ -580,6 +582,12 @@ const DEMO = {
 
 const qs = new URLSearchParams(location.search);
 
+/* SNAPSHOT-START: shared content (schedule, hotels, contacts, settings) copied from the
+   sheet by scripts/deploy.sh at publish time, so the page paints before the sheet answers.
+   null = none baked in yet; the built-in DEMO content is used instead. */
+const SNAPSHOT = {"settings": {"event_name": "Grand Prix Weekend in Vegas", "event_dates": "Nov 18–22, 2026", "intro": "Three nights trackside at the Formula 1 Heineken Las Vegas Grand Prix, as our guest. You’ll have the run of the HGV Clubhouse — a multi-story trackside suite with front-row views of the Harmon Straightaway — with all-inclusive food and drink and private concerts at the Elara Terrace Party every night.", "venue_name": "HGV Clubhouse", "venue_detail": "Multi-story trackside suite in the Hilton Grand Vacations Zone, right on the Harmon Straightaway. All-inclusive food and premium bar. Your credentials get you in every night.", "venue_address": "Harmon Ave & Koval Ln, Las Vegas, NV", "venue_map_url": "https://maps.google.com/?q=Elara+by+Hilton+Grand+Vacations+Las+Vegas", "rsvp_deadline": "Friday, November 13", "dress_code": "Smart casual, and warm. Vegas drops to the 40s°F at night in November — bring a proper jacket for the terrace.", "good_to_know": "Sessions run late — most nights wrap after 10 PM.|The clubhouse is all-inclusive.|Photo ID is required to collect credentials.|Roads around the Strip close early each race night; plan to walk or let us move you.", "timezone_note": "All times Pacific and subject to change by F1.", "site_url": "https://f1grandprix.hugoinc.com/", "api_url": "https://script.google.com/macros/s/AKfycbzXuol_8m8hUg1Ri3Jw_mYrR1BVBEymgXBqEGHNMqo4OrQntMljYXnbJwPLN-C4At-7Vg/exec", "band_line": "We can’t wait to see you in **Vegas**.", "link_style": "name+code"}, "schedule": [{"date": "2026-11-18", "start": "", "end": "", "title": "Arrivals & hotel check-in", "kind": "travel", "location": "Your hotel", "detail": "Settle in, then join us for welcome drinks.", "highlight": "", "image": "", "image_credit": ""}, {"date": "2026-11-18", "start": "7:30 PM", "end": "", "title": "Welcome drinks with the Hugo team", "kind": "hugo", "location": "Elara", "detail": "Casual. Come say hi, grab your weekend credentials.", "highlight": "", "image": "", "image_credit": ""}, {"date": "2026-11-19", "start": "4:30 PM", "end": "5:30 PM", "title": "Practice 1", "kind": "session", "location": "HGV Clubhouse · Harmon Straightaway", "detail": "", "highlight": "", "image": "", "image_credit": ""}, {"date": "2026-11-19", "start": "8:00 PM", "end": "9:00 PM", "title": "Practice 2", "kind": "session", "location": "HGV Clubhouse · Harmon Straightaway", "detail": "Followed by F1 Academy Qualifying at 9:30 PM.", "highlight": "", "image": "", "image_credit": ""}, {"date": "2026-11-19", "start": "9:30 PM", "end": "10:00 PM", "title": "F1 Academy Qualifying", "kind": "session", "location": "HGV Clubhouse · Harmon Straightaway", "detail": "", "highlight": "", "image": "", "image_credit": ""}, {"date": "2026-11-19", "start": "Late", "end": "", "title": "Mark McGrath", "kind": "concert", "location": "Elara Terrace Party", "detail": "POP 2000 Tour", "highlight": "", "image": "img/acts/mark-mcgrath.jpg", "image_credit": "Justin Higuchi, CC BY 2.0"}, {"date": "2026-11-19", "start": "Late", "end": "", "title": "O-Town", "kind": "concert", "location": "Elara Terrace Party", "detail": "POP 2000 Tour", "highlight": "", "image": "img/acts/o-town.jpg", "image_credit": "Tomás Del Coro, CC BY-SA 2.0"}, {"date": "2026-11-19", "start": "Late", "end": "", "title": "LFO", "kind": "concert", "location": "Elara Terrace Party", "detail": "POP 2000 Tour", "highlight": "", "image": "img/acts/lfo.jpg", "image_credit": ""}, {"date": "2026-11-20", "start": "4:30 PM", "end": "5:30 PM", "title": "Practice 3", "kind": "session", "location": "HGV Clubhouse · Harmon Straightaway", "detail": "", "highlight": "", "image": "", "image_credit": ""}, {"date": "2026-11-20", "start": "8:00 PM", "end": "9:00 PM", "title": "Formula 1 Qualifying", "kind": "session", "location": "HGV Clubhouse · Harmon Straightaway", "detail": "Grid is set tonight.", "highlight": "", "image": "", "image_credit": ""}, {"date": "2026-11-20", "start": "After Qualifying", "end": "", "title": "F1 Academy Reverse Race", "kind": "session", "location": "HGV Clubhouse · Harmon Straightaway", "detail": "", "highlight": "", "image": "", "image_credit": ""}, {"date": "2026-11-20", "start": "Late", "end": "", "title": "Tucker Wetmore", "kind": "concert", "location": "Elara Terrace Party", "detail": "Live on the terrace", "highlight": "", "image": "img/acts/tucker-wetmore.jpg", "image_credit": ""}, {"date": "2026-11-21", "start": "4:20 PM", "end": "4:55 PM", "title": "F1 Academy Feature Race", "kind": "session", "location": "HGV Clubhouse · Harmon Straightaway", "detail": "", "highlight": "", "image": "", "image_credit": ""}, {"date": "2026-11-21", "start": "8:00 PM", "end": "", "title": "Formula 1 Heineken Las Vegas Grand Prix", "kind": "race", "location": "HGV Clubhouse · Harmon Straightaway", "detail": "50 laps under the lights.", "highlight": "TRUE", "image": "", "image_credit": ""}, {"date": "2026-11-21", "start": "Late", "end": "", "title": "Bebe Rexha", "kind": "concert", "location": "Elara Terrace Party", "detail": "Race-night headliner", "highlight": "", "image": "img/acts/bebe-rexha.jpg", "image_credit": "Justin Higuchi, CC BY 2.0"}, {"date": "2026-11-22", "start": "", "end": "", "title": "Check-out & departures", "kind": "travel", "location": "Your hotel", "detail": "Safe travels home. We’re around all morning if you need anything.", "highlight": "", "image": "", "image_credit": ""}], "contacts": [{"order": "1", "name": "Ami Lad Pejovic", "role": "Your Hugo host · on site all weekend", "phone": "732-744-4255", "email": "ami@hugoinc.com", "photo_url": ""}], "hotels": [{"name": "Elara", "image": "img/hotels/elara.jpg", "image_credit": "", "address": "80 E Harmon Ave, Las Vegas, NV 89109", "map_url": "https://maps.google.com/?q=Elara+by+Hilton+Grand+Vacations+Las+Vegas", "blurb": "A Hilton Grand Vacations tower right beside the HGV Clubhouse. You can walk to the terrace in five minutes."}, {"name": "Bellagio", "image": "img/hotels/bellagio.jpg", "image_credit": "David Vives / Unsplash", "address": "", "map_url": "", "blurb": ""}, {"name": "Caesars Palace", "image": "img/hotels/caesars-palace.jpg", "image_credit": "Paul Cariou / Unsplash", "address": "", "map_url": "", "blurb": ""}, {"name": "Paris Las Vegas", "image": "img/hotels/paris-las-vegas.jpg", "image_credit": "Victor Pot / Unsplash", "address": "", "map_url": "", "blurb": ""}, {"name": "Wynn", "image": "img/hotels/wynn.jpg", "image_credit": "Scott Webb / Unsplash", "address": "", "map_url": "", "blurb": ""}, {"name": "The Venetian", "image": "img/hotels/venetian.jpg", "image_credit": "Tobias Smietana / Unsplash", "address": "", "map_url": "", "blurb": ""}, {"name": "Aria", "image": "img/hotels/aria.jpg", "image_credit": "Kevin Dunlap / Unsplash", "address": "", "map_url": "", "blurb": ""}, {"name": "MGM Grand", "image": "img/hotels/mgm-grand.jpg", "image_credit": "Meg von Haartman / Unsplash", "address": "", "map_url": "", "blurb": ""}, {"name": "Waldorf Astoria", "image": "img/hotels/waldorf-astoria.jpg", "image_credit": "Frugal Flyer / Unsplash", "address": "", "map_url": "", "blurb": ""}, {"name": "Polo Towers", "image": "img/hotels/polo-towers.jpg", "image_credit": "", "address": "3745 Las Vegas Boulevard South, Las Vegas, NV 89109", "map_url": "https://maps.google.com/?q=Polo+Towers+3745+Las+Vegas+Blvd+S+Las+Vegas", "blurb": "On the Strip next to Planet Hollywood, a few minutes’ walk from the HGV Clubhouse."}]};
+/* SNAPSHOT-END */
+
 function demoPayload(mode) {
   const d = JSON.parse(JSON.stringify(DEMO));
   const g = d.guest;
@@ -655,6 +663,12 @@ async function init() {
   let cached = null;
   try { cached = TOKEN ? JSON.parse(localStorage.getItem(cacheKey) || "null") : null; } catch (e) {}
   if (cached && cached.ok) { DATA = cached; render(DATA); }
+  else if (TOKEN) {
+    // Paint everything that isn't personal right away; the name, hotel and
+    // car fill in when the sheet answers.
+    const shared = SNAPSHOT || { settings: DEMO.settings, schedule: DEMO.schedule, contacts: DEMO.contacts, hotels: DEMO.hotels };
+    render(Object.assign({ ok: false, error: "pending" }, shared), { pending: true });
+  }
   try {
     const url = `${API_URL}${API_URL.includes("?") ? "&" : "?"}g=${encodeURIComponent(TOKEN)}&_=${Date.now()}`;
     const fresh = await getJSON(url);
@@ -705,7 +719,8 @@ async function postJSON(payload) {
 }
 
 /* ------------------------------------------------------------ render */
-function render(data) {
+function render(data, opts) {
+  const pending = !!(opts && opts.pending);
   const S = Object.assign({}, DEMO.settings, data.settings || {});
   const schedule = (data.schedule && data.schedule.length) ? data.schedule : DEMO.schedule;
   const contacts = (data.contacts && data.contacts.length) ? data.contacts : DEMO.contacts;
@@ -713,12 +728,12 @@ function render(data) {
   const g = data.guest || null;
 
   document.title = g ? `${g.first_name}, your Grand Prix Weekend in Vegas · Hugo` : "Your Grand Prix Weekend in Vegas · Hugo";
-  const ln = $("#loading-note"); if (ln) ln.hidden = true;
+  const ln = $("#loading-note"); if (ln) ln.hidden = !pending;
 
   // hero
   const hi = $("#hi");
-  hi.classList.remove("skel");
-  hi.textContent = g && g.first_name ? `Hi ${g.first_name},` : "Hi there,";
+  hi.classList.toggle("skel", pending);
+  hi.textContent = pending ? "Hi there," : (g && g.first_name ? `Hi ${g.first_name},` : "Hi there,");
   $("#h1-title").textContent = `welcome to your ${S.event_name || "Grand Prix Weekend in Vegas"}`;
   $("#chip-dates").textContent = S.event_dates || "";
   $("#top-dates").textContent = `${S.event_dates || ""} · Las Vegas`;
@@ -731,7 +746,8 @@ function render(data) {
   $("#hero-actions").innerHTML = actions.join("");
 
   const notice = $("#hero-notice");
-  if (!g) {
+  notice.innerHTML = "";
+  if (!g && !pending) {
     const host = contacts[0];
     const who = host ? `${esc(host.name)}${host.phone ? ` · <a href="${smsHref(host.phone)}">${esc(host.phone)}</a>` : ""}${host.email ? ` · <a href="mailto:${esc(host.email)}">${esc(host.email)}</a>` : ""}` : "your Hugo host";
     const why = data.error === "network" ? "We couldn't reach the guest list just now. Refresh in a moment, or" : "This link didn't match an invitation. Check the link you were sent, or";
@@ -753,8 +769,8 @@ function render(data) {
 
   renderSchedule(schedule, S);
   renderVenue(S);
-  renderStay(g, contacts, hotels);
-  renderTravel(g, S, contacts);
+  renderStay(g, contacts, hotels, pending);
+  renderTravel(g, S, contacts, pending);
   renderKnow(S);
   renderContacts(contacts);
   $("#foot-tz").textContent = S.timezone_note || "";
@@ -846,8 +862,9 @@ function findHotel(name, hotels) {
   return best;
 }
 
-function renderStay(g, contacts, hotels) {
+function renderStay(g, contacts, hotels, pending) {
   const slot = $("#stay-slot");
+  if (pending) { slot.innerHTML = `<div class="card"><div class="pic skel-pic"></div><div class="body"><p class="eyebrow">Your hotel</p><div class="skel-line" style="width:60%"></div><div class="skel-line" style="width:40%"></div></div></div>`; return; }
   if (!g) { slot.innerHTML = `<div class="empty">Your hotel details show here once we can match your link to an invitation.</div>`; return; }
   if (!g.hotel_name) { slot.innerHTML = `<div class="empty">We're finalising your hotel and will add it here shortly. Your room is on us.</div>`; return; }
   const hotel = findHotel(g.hotel_name, hotels) || {};
@@ -880,9 +897,10 @@ function renderStay(g, contacts, hotels) {
 }
 
 /* ------------------------------------------------------------ travel / car */
-function renderTravel(g, S, contacts) {
+function renderTravel(g, S, contacts, pending) {
   const copy = $("#travel-copy"), slot = $("#travel-slot");
   const section = $("#car"), navLink = $("#nav-car");
+  if (pending) { section.hidden = true; if (navLink) navLink.hidden = true; return; }
   const pickup = !!(g && yes(g.airport_pickup));
   // Guests who aren't on the pickup list never see this section.
   section.hidden = !pickup;
