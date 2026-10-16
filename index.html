@@ -150,7 +150,9 @@
   .schedule .head-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
   .nights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   @media (max-width: 960px) { .nights { grid-template-columns: 1fr; } }
-  .night { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 26px 24px; overflow: hidden; display: flex; flex-direction: column; isolation: isolate; }
+  .night { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 26px 24px; overflow: hidden; display: grid; grid-template-rows: auto auto auto auto; gap: 0; align-content: start; isolation: isolate; }
+  /* Day, title, sessions and the terrace party each share one row across the three cards, so the party block starts at the same height on every card. */
+  @media (min-width: 961px) { .nights { grid-template-rows: auto auto auto auto; } .night { grid-row: span 4; grid-template-rows: subgrid; } }
   .night .day { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; color: var(--yellow); display: flex; justify-content: space-between; gap: 10px; }
   .night .day span { color: var(--muted); }
   .night .title { margin-top: 10px; font-size: 30px; }
@@ -160,7 +162,7 @@
   .night li .t { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
   .night li .w { font-weight: 600; font-size: 17px; line-height: 1.3; }
   .night li .d { font-size: 14px; color: var(--muted); }
-  .night .concert { margin-top: auto; padding-top: 20px; }
+  .night .concert { padding-top: 22px; align-self: start; }
   .night .concert .lab { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
   .night .concert .lab svg { width: 14px; height: 14px; }
   .night .concert .acts { display: grid; gap: 10px; }
@@ -518,7 +520,7 @@ const DEMO = {
     venue_map_url: "https://maps.google.com/?q=Elara+by+Hilton+Grand+Vacations+Las+Vegas",
     rsvp_deadline: "Friday, November 13",
     dress_code: "Smart casual, and warm. Vegas drops to the 40s°F at night in November — bring a proper jacket for the terrace.",
-    good_to_know: "Sessions run late — most nights wrap after 10 PM.|The clubhouse is all-inclusive. Don’t bring cash for drinks.|Photo ID is required to collect credentials.|Roads around the Strip close early each race night; plan to walk or let us move you.",
+    good_to_know: "Sessions run late — most nights wrap after 10 PM.|The clubhouse is all-inclusive.|Photo ID is required to collect credentials.|Roads around the Strip close early each race night; plan to walk or let us move you.",
     timezone_note: "All times Pacific and subject to change by F1.",
     band_line: "Your seat is trackside. Your room is on us. **Your only job is to show up.**"
   },
@@ -530,12 +532,13 @@ const DEMO = {
     { date: "2026-11-19", start: "9:30 PM", end: "10:00 PM", title: "F1 Academy Qualifying", kind: "session", location: "HGV Clubhouse · Harmon Straightaway", detail: "" },
     { date: "2026-11-19", start: "Late", end: "", title: "Mark McGrath", kind: "concert", location: "Elara Terrace Party", detail: "POP 2000 Tour", image: "img/acts/mark-mcgrath.jpg", image_credit: "Justin Higuchi, CC BY 2.0" },
     { date: "2026-11-19", start: "Late", end: "", title: "O-Town", kind: "concert", location: "Elara Terrace Party", detail: "POP 2000 Tour", image: "img/acts/o-town.jpg", image_credit: "Tomás Del Coro, CC BY-SA 2.0" },
-    { date: "2026-11-19", start: "Late", end: "", title: "LFO", kind: "concert", location: "Elara Terrace Party", detail: "POP 2000 Tour", image: "", image_credit: "" },
+    { date: "2026-11-19", start: "Late", end: "", title: "LFO", kind: "concert", location: "Elara Terrace Party", detail: "POP 2000 Tour", image: "img/acts/lfo.jpg", image_credit: "" },
     { date: "2026-11-20", start: "4:30 PM", end: "5:30 PM", title: "Practice 3", kind: "session", location: "HGV Clubhouse · Harmon Straightaway", detail: "" },
-    { date: "2026-11-20", start: "8:00 PM", end: "9:00 PM", title: "Formula 1 Qualifying", kind: "session", location: "HGV Clubhouse · Harmon Straightaway", detail: "Grid is set tonight. F1 Academy reverse race follows." },
-    { date: "2026-11-20", start: "Late", end: "", title: "Tucker Wetmore", kind: "concert", location: "Elara Terrace Party", detail: "Live on the terrace", image: "", image_credit: "" },
+    { date: "2026-11-20", start: "8:00 PM", end: "9:00 PM", title: "Formula 1 Qualifying", kind: "session", location: "HGV Clubhouse · Harmon Straightaway", detail: "Grid is set tonight." },
+    { date: "2026-11-20", start: "After Qualifying", end: "", title: "F1 Academy Reverse Race", kind: "session", location: "HGV Clubhouse · Harmon Straightaway", detail: "" },
+    { date: "2026-11-20", start: "Late", end: "", title: "Tucker Wetmore", kind: "concert", location: "Elara Terrace Party", detail: "Live on the terrace", image: "img/acts/tucker-wetmore.jpg", image_credit: "" },
     { date: "2026-11-21", start: "4:20 PM", end: "4:55 PM", title: "F1 Academy Feature Race", kind: "session", location: "HGV Clubhouse · Harmon Straightaway", detail: "" },
-    { date: "2026-11-21", start: "8:00 PM", end: "", title: "Formula 1 Heineken Las Vegas Grand Prix", kind: "race", location: "HGV Clubhouse · Harmon Straightaway", detail: "50 laps under the lights. Lights out at 8:00 PM.", highlight: "TRUE" },
+    { date: "2026-11-21", start: "8:00 PM", end: "", title: "Formula 1 Heineken Las Vegas Grand Prix", kind: "race", location: "HGV Clubhouse · Harmon Straightaway", detail: "50 laps under the lights.", highlight: "TRUE" },
     { date: "2026-11-21", start: "Late", end: "", title: "Bebe Rexha", kind: "concert", location: "Elara Terrace Party", detail: "Race-night headliner", image: "img/acts/bebe-rexha.jpg", image_credit: "Justin Higuchi, CC BY 2.0" },
     { date: "2026-11-22", start: "", end: "", title: "Check-out & departures", kind: "travel", location: "Your hotel", detail: "Safe travels home. We're around all morning if you need anything." }
   ],

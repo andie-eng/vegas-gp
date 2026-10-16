@@ -38,4 +38,4 @@ These licences require the photographer credit, which the page prints in its foo
 | acts/o-town.jpg | O-Town | Tomás Del Coro | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:O-TOWN.jpg |
 | acts/bebe-rexha.jpg | Bebe Rexha | Justin Higuchi (derivative work) | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Bebe_Rexha_@_Wiltern_06_30_2023_(53047143292)_(denoised).jpg |
 
-No Creative Commons photo exists yet for Tucker Wetmore or LFO; the page shows a name tile until a press photo URL is pasted into the Schedule tab.
+Tucker Wetmore (`acts/tucker-wetmore.jpg`) and LFO (`acts/lfo.jpg`) were supplied by Andie on 16 Oct 2026 and look like press/agency photos; confirm usage rights with HGV or the acts' teams before launch.
