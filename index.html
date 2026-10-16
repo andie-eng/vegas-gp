@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Grand Prix Weekend in Vegas · Hugo</title>
+<meta name="description" content="Three nights trackside at the Formula 1 Las Vegas Grand Prix, as Hugo's guest. Your schedule, your hotel, your car.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a0a0b">
+<meta property="og:title" content="Your Grand Prix Weekend in Vegas">
+<meta property="og:description" content="Three nights trackside at the Formula 1 Las Vegas Grand Prix, as Hugo's guest.">
+<meta property="og:image" content="img/hero-track.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FFCE07'/%3E%3Ctext x='32' y='44' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='36' text-anchor='middle' fill='%23000'%3Eh%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --surface: #141416;
+    --surface-2: #1c1c1f;
+    --line: rgba(255, 254, 249, 0.1);
+    --line-strong: rgba(255, 254, 249, 0.2);
+    --text: #fffef9;
+    --muted: #a9a9af;
+    --dim: #6f6f76;
+    --yellow: #ffce07;
+    --yellow-ink: #1a1500;
+    --red: #ed573b;
+    --teal: #0badbf;
+    --green: #50b720;
+    --radius: 18px;
+    --radius-sm: 12px;
+    --wrap: 1120px;
+    --gutter: 20px;
+    --font: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text); font-family: var(--font);
+    font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  ::selection { background: var(--yellow); color: var(--yellow-ink); }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+    color: var(--yellow); margin: 0 0 14px;
+  }
+  .eyebrow.red { color: var(--red); }
+  .eyebrow.muted { color: var(--muted); }
+  h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.03em; line-height: 0.95; text-transform: uppercase; }
+  h2 { font-size: clamp(34px, 5.2vw, 58px); }
+  h3 { font-size: clamp(22px, 2.6vw, 28px); text-transform: none; letter-spacing: -0.02em; line-height: 1.1; }
+  p { margin: 0; }
+  .lede { font-size: clamp(18px, 1.6vw, 21px); color: var(--muted); max-width: 62ch; }
+  .lede strong { color: var(--text); font-weight: 600; }
+  .bar { width: 72px; height: 5px; background: var(--yellow); border-radius: 3px; margin: 26px 0 0; }
+  section { position: relative; padding: clamp(44px, 6vw, 80px) 0; }
+  .section-head { margin-bottom: clamp(20px, 3vw, 34px); }
+  .section-head p { margin-top: 14px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* ---------- top bar ---------- */
+  .top {
+    position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    background: rgba(10, 10, 11, 0.72); border-bottom: 1px solid var(--line);
+  }
+  .top .wrap { display: flex; align-items: center; gap: 18px; height: 64px; }
+  .logo { height: 26px; width: auto; color: var(--yellow); flex: none; }
+  .top .tag { white-space: nowrap; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .top nav { margin-left: auto; display: flex; gap: 4px; }
+  .top nav a {
+    white-space: nowrap; text-decoration: none; font-size: 14px; font-weight: 500; color: var(--muted); padding: 8px 12px; border-radius: 999px;
+    transition: color .15s, background .15s;
+  }
+  .top nav a:hover { color: var(--text); background: rgba(255, 255, 255, 0.06); }
+  @media (max-width: 980px) { .top .tag { display: none; } }
+  @media (max-width: 760px) { .top nav { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero {
+    min-height: min(82vh, 760px); display: flex; align-items: flex-end; padding: 96px 0 52px; isolation: isolate;
+  }
+  .hero .bg {
+    position: absolute; inset: 0; z-index: -2; background: url("img/hero-track.jpg") center 45% / cover no-repeat;
+    animation: drift 30s ease-in-out infinite alternate;
+  }
+  .hero .shade {
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      linear-gradient(180deg, rgba(10,10,11,0.55) 0%, rgba(10,10,11,0.15) 35%, rgba(10,10,11,0.75) 70%, var(--bg) 100%),
+      linear-gradient(90deg, rgba(10,10,11,0.55) 0%, rgba(10,10,11,0) 60%);
+  }
+  @keyframes drift { from { transform: scale(1.04) translate3d(0, 0, 0); } to { transform: scale(1.1) translate3d(-1.5%, 1%, 0); } }
+  .hero h1 {
+    font-size: clamp(32px, 7vw, 88px); max-width: 12ch; text-wrap: balance; overflow-wrap: anywhere;
+    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.45);
+  }
+  .hero h1 .hi { display: block; color: var(--yellow); }
+  .hero h1 .hi.skel { width: 6ch; height: 0.9em; border-radius: 6px; background: linear-gradient(90deg, rgba(255,206,7,.25), rgba(255,206,7,.55), rgba(255,206,7,.25)); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; color: transparent; }
+  @keyframes shimmer { to { background-position: -200% 0; } }
+  .hero .meta { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 28px; align-items: center; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; font-size: 14px; font-weight: 600;
+    border: 1px solid var(--line-strong); background: rgba(10, 10, 11, 0.45); backdrop-filter: blur(6px); letter-spacing: 0.02em;
+  }
+  .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 4px rgba(255, 206, 7, 0.18); }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 22px; border-radius: 999px;
+    font-weight: 600; font-size: 16px; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform .12s, background .15s, border-color .15s, color .15s;
+    line-height: 1;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--yellow); color: var(--yellow-ink); }
+  .btn-primary:hover { background: #ffd630; }
+  .btn-ghost { background: rgba(255, 254, 249, 0.06); border-color: var(--line-strong); color: var(--text); }
+  .btn-ghost:hover { background: rgba(255, 254, 249, 0.12); }
+  .btn-sm { padding: 11px 16px; font-size: 14px; }
+  .btn[disabled] { opacity: 0.55; cursor: progress; }
+
+  /* ---------- notice banners ---------- */
+  .notice { border-radius: var(--radius-sm); padding: 14px 18px; font-size: 15px; display: flex; gap: 12px; align-items: flex-start; margin-top: 22px; }
+  .notice.warn { background: rgba(255, 206, 7, 0.1); border: 1px solid rgba(255, 206, 7, 0.35); color: #ffe783; }
+  .notice.err { background: rgba(237, 87, 59, 0.1); border: 1px solid rgba(237, 87, 59, 0.4); color: #f6ab9d; }
+  .notice a { color: inherit; }
+
+  /* ---------- intro ---------- */
+  .intro .grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+  @media (max-width: 860px) { .intro .grid { grid-template-columns: 1fr; } }
+  .note {
+    position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 28px 26px;
+  }
+  .note::before { content: "“"; position: absolute; top: 4px; left: 22px; font-size: 90px; line-height: 1; color: var(--yellow); opacity: 0.9; font-weight: 700; }
+  .note p { font-size: 19px; line-height: 1.5; padding-top: 32px; }
+  .note .who { margin-top: 18px; display: flex; align-items: center; gap: 12px; }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--yellow); color: var(--yellow-ink); font-weight: 700; font-size: 15px; letter-spacing: 0.02em; flex: none; }
+  .note .who b { display: block; font-weight: 600; }
+  .note .who span { color: var(--muted); font-size: 14px; }
+
+  /* ---------- schedule ---------- */
+  .schedule { background: var(--bg); isolation: isolate; }
+  .schedule .bg { position: absolute; inset: 0; z-index: -1; background: url("img/track-trails.jpg") center / cover no-repeat; opacity: 0.16; mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent); -webkit-mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent); }
+  .schedule .head-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .nights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 960px) { .nights { grid-template-columns: 1fr; } }
+  .night { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 26px 24px; overflow: hidden; display: flex; flex-direction: column; isolation: isolate; }
+  .night .day { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; color: var(--yellow); display: flex; justify-content: space-between; gap: 10px; }
+  .night .day span { color: var(--muted); }
+  .night .title { margin-top: 10px; font-size: 30px; }
+  .night ul { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
+  .night li { display: grid; grid-template-columns: 1fr; gap: 2px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .night li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .night li .t { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+  .night li .w { font-weight: 600; font-size: 17px; line-height: 1.3; }
+  .night li .d { font-size: 14px; color: var(--muted); }
+  .night .concert { margin-top: auto; padding-top: 20px; }
+  .night .concert .lab { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .night .concert .lab svg { width: 14px; height: 14px; }
+  .night .concert .acts { display: grid; gap: 10px; }
+  .night .concert .act { display: flex; align-items: center; gap: 12px; }
+  .night .concert .act b { font-weight: 600; display: block; line-height: 1.25; }
+  .night .concert .act small { color: var(--muted); font-size: 13px; display: block; margin-top: 1px; }
+  .act-pic { width: 54px; height: 54px; border-radius: 12px; flex: none; background: var(--surface-2) center / cover no-repeat; border: 1px solid var(--line-strong); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); }
+  .act-pic.tile { display: grid; place-items: center; font-weight: 700; font-size: 13px; letter-spacing: 0.06em; color: var(--yellow); background: linear-gradient(135deg, #2a2a2f, #121214); }
+  .night.race { border-color: rgba(237, 87, 59, 0.6); color: var(--text); }
+  .night.race::before { content: ""; position: absolute; inset: 0; z-index: -2; background: url("img/race-night.jpg") center / cover no-repeat; }
+  .night.race::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(10,10,11,0.5), rgba(10,10,11,0.88) 55%, rgba(10,10,11,0.96)); }
+  .night.race .day { color: var(--red); }
+  .night.race .title { font-size: 40px; }
+  .night.race .title small { display: block; font-size: 14px; font-weight: 500; letter-spacing: 0.02em; text-transform: none; color: #f6ab9d; margin-top: 8px; }
+  .night.race li .w.big { font-size: 19px; }
+  .night.race li { border-color: rgba(255, 254, 249, 0.14); }
+  .travel-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  @media (max-width: 760px) { .travel-row { grid-template-columns: 1fr; } .travel-strip { flex-direction: column; align-items: flex-start; gap: 8px; } }
+  .travel-strip { display: flex; align-items: center; gap: 16px; padding: 18px 22px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: rgba(20, 20, 22, 0.7); }
+  .travel-strip .k { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); font-weight: 600; white-space: nowrap; }
+  .travel-strip b { font-weight: 600; display: block; }
+  .travel-strip small { color: var(--muted); font-size: 14px; }
+  .small-print { font-size: 13px; color: var(--dim); margin-top: 18px; }
+
+  /* ---------- venue ---------- */
+  .venue .card { display: grid; grid-template-columns: 1.1fr 1fr; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+  @media (max-width: 860px) { .venue .card { grid-template-columns: 1fr; } }
+  .venue .pic { min-height: 320px; background: url("img/clubhouse.jpg") center 30% / cover no-repeat; }
+  @media (max-width: 860px) { .venue .pic { min-height: 380px; } }
+  .venue .body { padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+  .venue .body p { color: var(--muted); font-size: 17px; }
+  .venue .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+  .fact { border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px 16px; }
+  .fact .k { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .fact .v { font-weight: 600; margin-top: 4px; font-size: 16px; }
+  .venue .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+
+  /* ---------- stay ---------- */
+  .stay { background: var(--surface); }
+  .stay .card { display: grid; grid-template-columns: 1fr 1.1fr; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--bg); }
+  @media (max-width: 860px) { .stay .card { grid-template-columns: 1fr; } }
+  .stay .pic { min-height: 300px; background: var(--surface-2) url("img/pool.jpg") center / cover no-repeat; }
+  .stay .body { padding: clamp(28px, 4vw, 48px); }
+  .stay .body .eyebrow { margin-bottom: 10px; }
+  .stay .hotel { font-size: clamp(30px, 4vw, 44px); }
+  .stay .addr { color: var(--muted); margin-top: 14px; font-size: 17px; }
+  .stay .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+  @media (max-width: 520px) { .stay .facts { grid-template-columns: 1fr 1fr; } .stay .facts .fact:last-child { grid-column: 1 / -1; } }
+  .stay .notes { margin-top: 22px; color: var(--muted); font-size: 16px; }
+  .stay .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .empty { border: 1px dashed var(--line-strong); border-radius: var(--radius); padding: 28px; color: var(--muted); }
+
+  /* ---------- travel / car ---------- */
+  .travel .grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+  @media (max-width: 900px) { .travel .grid { grid-template-columns: 1fr; } }
+  .travel .copy p { margin-top: 14px; }
+  .steps { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 14px; }
+  .steps li { display: grid; grid-template-columns: 36px 1fr; gap: 14px; align-items: baseline; }
+  .steps .num { font-weight: 700; color: var(--yellow); font-size: 15px; letter-spacing: 0.04em; }
+  .steps b { font-weight: 600; }
+  .steps span { color: var(--muted); display: block; font-size: 15px; }
+  .deadline { display: inline-flex; align-items: center; gap: 10px; margin-top: 28px; padding: 12px 16px; border-radius: var(--radius-sm); background: rgba(255, 206, 7, 0.1); border: 1px solid rgba(255, 206, 7, 0.3); font-size: 15px; }
+  .deadline b { color: var(--yellow); font-weight: 600; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 3vw, 34px); }
+  .panel h3 { margin-bottom: 6px; }
+  .panel .sub { color: var(--muted); font-size: 15px; margin-bottom: 22px; }
+  .field { display: grid; gap: 7px; }
+  .field label { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: var(--muted); text-transform: uppercase; }
+  .field label i { font-style: normal; color: var(--dim); font-weight: 500; text-transform: none; letter-spacing: 0; }
+  .field input, .field select, .field textarea {
+    width: 100%; background: var(--bg); border: 1px solid var(--line-strong); border-radius: 12px; padding: 13px 14px; font-size: 16px; outline: none; transition: border-color .15s, box-shadow .15s; color-scheme: dark;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--yellow); box-shadow: 0 0 0 4px rgba(255, 206, 7, 0.16); }
+  .field input::placeholder, .field textarea::placeholder { color: var(--dim); }
+  .field textarea { min-height: 88px; resize: vertical; }
+  .field.invalid input, .field.invalid select { border-color: var(--red); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
+  .form-grid { display: grid; gap: 16px; }
+  .seg { display: flex; flex-wrap: wrap; gap: 8px; }
+  .seg input { position: absolute; opacity: 0; pointer-events: none; }
+  .seg label.opt { cursor: pointer; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line-strong); font-size: 14px; font-weight: 500; color: var(--muted); text-transform: none; letter-spacing: 0; transition: all .15s; }
+  .seg input:checked + label.opt { background: var(--yellow); color: var(--yellow-ink); border-color: var(--yellow); font-weight: 600; }
+  .seg input:focus-visible + label.opt { box-shadow: 0 0 0 4px rgba(255, 206, 7, 0.3); }
+  details.more { border-top: 1px solid var(--line); padding-top: 16px; }
+  details.more summary { cursor: pointer; font-weight: 600; color: var(--text); list-style: none; display: flex; align-items: center; gap: 10px; font-size: 15px; }
+  details.more summary::-webkit-details-marker { display: none; }
+  details.more summary::before { content: "+"; width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--line-strong); display: grid; place-items: center; font-weight: 500; color: var(--yellow); }
+  details.more[open] summary::before { content: "–"; }
+  details.more .form-grid { margin-top: 16px; }
+  .form-foot { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
+  .form-foot small { color: var(--dim); font-size: 13px; }
+  .form-msg { font-size: 15px; margin-top: 10px; color: #f6ab9d; min-height: 1em; }
+
+  .status { display: inline-flex; align-items: center; gap: 9px; padding: 7px 12px 7px 9px; border-radius: 999px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+  .status .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .status.pending { background: rgba(255, 206, 7, 0.12); color: #ffe783; border: 1px solid rgba(255, 206, 7, 0.35); }
+  .status.pending .dot { background: var(--yellow); animation: pulse 1.6s ease-in-out infinite; }
+  .status.booked { background: rgba(80, 183, 32, 0.14); color: #a8db90; border: 1px solid rgba(80, 183, 32, 0.4); }
+  .status.booked .dot { background: var(--green); }
+  .status.none { background: rgba(255, 254, 249, 0.06); color: var(--muted); border: 1px solid var(--line-strong); }
+  .status.none .dot { background: var(--dim); }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 206, 7, 0.5); } 50% { box-shadow: 0 0 0 7px rgba(255, 206, 7, 0); } }
+
+  .car { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+  .car .head { padding: 24px 28px; display: flex; justify-content: space-between; gap: 16px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
+  .car .head h3 { margin: 0; }
+  .car.booked .head { background: linear-gradient(135deg, rgba(80, 183, 32, 0.16), rgba(11, 173, 191, 0.08)); }
+  .car .big { padding: 26px 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 520px) { .car .big { grid-template-columns: 1fr; } }
+  .car .big .k { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .car .big .v { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; margin-top: 4px; line-height: 1.15; }
+  .car .big .v.sm { font-size: 18px; font-weight: 600; }
+  .car .big .v a { text-decoration: none; border-bottom: 1px solid var(--line-strong); }
+  .car .foot { padding: 18px 28px 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; display: flex; gap: 14px; justify-content: space-between; flex-wrap: wrap; align-items: center; }
+  .car .foot a.link { color: var(--text); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--yellow); }
+  .summary { padding: 22px 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
+  .summary .k { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .summary .v { font-weight: 600; margin-top: 3px; }
+  .stack { display: grid; gap: 16px; }
+  .tip { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 28px; }
+  .tip h3 { margin-bottom: 8px; }
+  .tip p { color: var(--muted); }
+  .tip ul { margin: 14px 0 0; padding-left: 18px; color: var(--muted); display: grid; gap: 6px; }
+  .tip ul b { color: var(--text); font-weight: 600; }
+
+  /* ---------- good to know ---------- */
+  .know .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 760px) { .know .grid { grid-template-columns: 1fr; } }
+  .know .item { border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 26px; background: var(--surface); display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; }
+  .know .item .ic { width: 44px; height: 44px; border-radius: 12px; background: rgba(255, 206, 7, 0.12); display: grid; place-items: center; color: var(--yellow); }
+  .know .item .ic svg { width: 22px; height: 22px; }
+  .know .item b { font-weight: 600; display: block; margin-bottom: 4px; }
+  .know .item p { color: var(--muted); font-size: 15px; }
+
+  /* ---------- band ---------- */
+  .band { height: clamp(200px, 28vw, 340px); background: url("img/race-pair.jpg") center / cover no-repeat; position: relative; }
+  .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg), transparent 30%, transparent 70%, var(--surface)); }
+  .band .q { position: absolute; left: 0; right: 0; bottom: 14%; text-align: center; font-size: clamp(22px, 4vw, 44px); font-weight: 700; letter-spacing: -0.03em; text-transform: uppercase; text-shadow: 0 2px 30px rgba(0,0,0,.6); padding: 0 20px; }
+  .band .q span { color: var(--yellow); }
+
+  /* ---------- contacts ---------- */
+  .contacts { background: var(--surface); }
+  .people { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .person { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 18px; }
+  .person .id { display: flex; gap: 14px; align-items: center; }
+  .person .avatar { width: 52px; height: 52px; font-size: 18px; }
+  .person .avatar.photo { background-size: cover; background-position: center; color: transparent; }
+  .person b { font-weight: 700; font-size: 19px; display: block; letter-spacing: -0.01em; }
+  .person span { color: var(--muted); font-size: 14px; }
+  .person .ways { display: flex; flex-wrap: wrap; gap: 8px; }
+  .person .ways a { text-decoration: none; }
+
+  /* ---------- footer ---------- */
+  footer { padding: 44px 0 calc(32px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--bg); }
+  footer .row-f { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: center; }
+  footer .logo { height: 30px; }
+  footer p { color: var(--dim); font-size: 13px; }
+  footer .tagline { color: var(--muted); font-size: 15px; font-weight: 500; margin-top: 12px; }
+  footer .credits { margin-top: 28px; }
+  footer .credits a { color: var(--dim); }
+
+  /* ---------- sticky mobile CTA ---------- */
+  .sticky { position: fixed; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 60; display: none; }
+  .sticky .btn { width: 100%; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); }
+  @media (max-width: 760px) { .sticky.show { display: block; } }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="hugo-logo" viewBox="0 0 99 52">
+    <g transform="translate(0.14 7.05)" fill="currentColor">
+      <path d="M4.2357457,10.5098461 C5.52046517,9.70807351 6.87412902,9.07950265 8.35727375,8.74554285 C13.860716,7.50656208 19.7680714,11.641879 20.4861018,17.2139293 C20.6196185,18.2494401 20.6142374,19.2795699 20.6216363,20.3120539 C20.6434967,23.3641034 20.6371068,26.4168256 20.62769,29.4688751 C20.6239905,30.770074 19.7879139,31.6693776 18.6114876,31.6828302 C17.444478,31.6962827 16.6010025,30.7865534 16.5986483,29.4803098 C16.5922583,25.9241256 16.6158003,22.367605 16.5905768,18.8114208 C16.5660258,15.3184636 13.6242873,12.4705567 10.1629436,12.5411826 C6.97098745,12.6060912 4.22868311,15.2024353 4.15133089,18.3890104 C4.06691607,21.8590983 4.12173525,25.3328856 4.10391061,28.8049913 C4.10155641,29.2495984 4.06624344,29.7019407 3.97611129,30.1364584 C3.7793676,31.0865455 3.00819961,31.6905654 2.05609468,31.6953006 C1.11912388,31.6999822 0.320714443,31.0831823 0.114553961,30.155292 C0.0361927998,29.8038439 0.00525191194,29.4352437 0.00491559794,29.0743788 C-0.000801740035,20.2814493 -0.00113805403,11.4885198 0.00188877195,2.69559033 C0.00222508595,1.05942273 0.533601204,0.26067698 1.74096846,0.0383734272 C2.71863325,-0.141554562 3.51233429,0.315496162 3.84393989,1.2581843 C4.050773,1.84538854 4.10996426,2.45546214 4.10962795,3.07427989 C4.10861901,5.25863931 4.1059285,7.44266242 4.1133274,9.62702184 C4.11433635,9.89540041 4.03698413,10.1789131 4.2357457,10.5098461"/>
+      <path d="M24.6434809,16.4462926 C24.6434809,14.5417465 24.6354094,12.6372003 24.6465077,10.7326541 C24.654243,9.40555907 25.4889743,8.50121073 26.6512755,8.52677059 C27.8031509,8.55199414 28.6758858,9.50140856 28.6789126,10.769985 C28.6873204,14.2982551 28.6802578,17.8265253 28.6842936,21.3547954 C28.6883294,24.8598599 31.420208,27.6495846 34.8580097,27.6667366 C38.3062371,27.6838886 41.13262,24.8699494 41.1524625,21.3598402 C41.1726413,17.8029833 41.1507809,14.2461265 41.1612066,10.6892696 C41.1642335,9.63593416 41.653234,8.97507715 42.5939043,8.65759674 C43.4084568,8.38249189 44.2068662,8.62598322 44.7587575,9.32484371 C45.0658122,9.71395901 45.1784774,10.1619293 45.1778047,10.6559745 C45.1724237,14.4368165 45.2037009,18.2179948 45.167379,21.9988367 C45.1236582,26.5417662 41.1578435,30.9316729 36.6176045,31.5289665 C30.7085676,32.3061882 25.9208015,28.9013453 24.7544645,23.0743689 C24.6569335,22.5857047 24.6518888,22.0734985 24.6481893,21.571718 C24.6357457,19.8632429 24.6434809,18.1547677 24.6434809,16.4462926"/>
+      <path d="M71.3059048,6.46735182 C72.8257077,6.45524452 73.9378981,7.51799676 73.9590859,9.00248675 C73.9809463,10.528007 72.8620296,11.6691204 71.3405451,11.672829 C69.8705166,11.6765193 68.7223406,10.5465043 68.7105696,9.08488367 C68.6987986,7.62830775 69.8382305,6.47912281 71.3059048,6.46735182"/>
+      <g transform="translate(49.1271 8.5198)"><path d="M11.5310146,19.1472019 C7.2816872,19.1431631 3.88121636,15.5018914 4.07022483,11.503118 C4.07964162,7.37250944 7.48011246,4.02147676 11.6403166,4.04323082 C15.7430111,4.06486127 19.1054784,7.49761825 19.0954117,11.654123 C19.0852996,15.7709426 15.6720488,19.1508983 11.5310146,19.1472019 M22.7524674,27.7306047 C22.0636964,25.3461385 20.6659754,23.3998894 18.7358694,21.869997 C18.0716492,21.3433293 18.1136885,21.0366109 18.748313,20.6252989 C18.8418083,20.5647624 18.9292499,20.4931275 19.014001,20.4201473 C21.6863521,18.1153875 23.0628853,15.2032446 23.0803736,11.6706023 C23.0803736,11.2229684 23.1271212,10.7696171 23.073311,10.3283732 C22.1988946,3.11948262 15.5617378,-0.690282359 10.1094153,0.103418678 C5.41312662,0.787145037 1.56502185,4.09277533 0.331085791,8.9259438 C-0.806328152,13.380759 1.06122348,18.3366821 4.79161835,21.0130689 C6.97866829,22.5819737 9.48790703,23.017164 12.0499471,23.3460791 C16.8770619,23.9665784 19.8285535,27.9256668 18.9067169,32.5533475 C18.1785971,36.208408 14.4229786,38.851836 10.7332778,38.360145 C8.77895712,38.0995016 7.20668918,37.2008706 5.87084998,35.791715 C4.90731037,34.7750377 3.59299526,34.647911 2.75691866,35.4385853 C1.8784665,36.2692808 1.87712124,37.4440256 2.85478604,38.499379 C5.92735073,41.8171165 9.67388867,43.143539 14.1435017,42.1662105 C21.7327634,40.5065009 24.2211507,32.8153361 22.7524674,27.7306047"/></g>
+      <path d="M87.1105775,27.6667654 C83.072119,27.6556382 79.6548325,24.209765 79.6430301,20.1363298 C79.6309542,16.0087481 83.1232388,12.5299161 87.2451031,12.5632112 C91.3477976,12.5965063 94.779882,16.05785 94.7644636,20.1464192 C94.7486048,24.2837541 91.2939874,27.6781712 87.1105775,27.6667654 M87.2050818,8.56060619 C80.8164611,8.53047005 75.6234366,13.7049972 75.6197348,20.0445161 C75.6157014,26.5343673 80.7646687,31.7263828 87.2346774,31.6742542 C93.6498669,31.6227981 98.658255,26.6117196 98.7854157,20.225453 C98.8001795,14.0386207 93.9898804,8.59336077 87.2050818,8.56060619"/>
+    </g>
+  </symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <svg class="logo" viewBox="0 0 99 52" aria-label="Hugo"><use href="#hugo-logo"/></svg>
+    <span class="tag" id="top-dates">Nov 18–22, 2026 · Las Vegas</span>
+    <nav aria-label="Sections">
+      <a href="#schedule">Schedule</a>
+      <a href="#venue">The clubhouse</a>
+      <a href="#stay">Your stay</a>
+      <a href="#car" id="nav-car">Your car</a>
+      <a href="#contacts">Contacts</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="hero">
+    <div class="bg" role="img" aria-label="The race start on the Las Vegas Strip Circuit"></div>
+    <div class="shade"></div>
+    <div class="wrap">
+      <p class="eyebrow">Hugo invites you</p>
+      <h1><span class="hi skel" id="hi">Hi there,</span><span id="h1-title">welcome to your Grand&nbsp;Prix Weekend in&nbsp;Vegas</span></h1>
+      <div class="meta">
+        <span class="chip"><span class="dot"></span><span id="chip-dates">Nov 18–22, 2026</span></span>
+        <span class="chip" id="chip-venue">HGV Clubhouse · Harmon Straightaway</span>
+      </div>
+      <div class="actions" id="hero-actions">
+        <a class="btn btn-primary" href="#schedule">See the weekend</a>
+      </div>
+      <div id="hero-notice"></div>
+    </div>
+  </section>
+
+  <section class="intro reveal">
+    <div class="wrap grid">
+      <div>
+        <p class="eyebrow">Three nights trackside</p>
+        <h2>As our guest</h2>
+        <div class="bar"></div>
+        <p class="lede" id="intro-text" style="margin-top:22px"></p>
+      </div>
+      <div id="note-slot"></div>
+    </div>
+  </section>
+
+  <section class="schedule reveal" id="schedule">
+    <div class="bg"></div>
+    <div class="wrap">
+      <div class="section-head head-row">
+        <div>
+          <p class="eyebrow">Schedule of events</p>
+          <h2>Your weekend, night by night</h2>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="ics-btn" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M12 14v5M9.5 16.5h5"/></svg>
+          Add to my calendar
+        </button>
+      </div>
+      <div class="nights" id="nights"></div>
+      <div class="travel-row" id="travel-days"></div>
+      <p class="small-print" id="tz-note"></p>
+    </div>
+  </section>
+
+  <section class="venue reveal" id="venue">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Where you'll be</p>
+        <h2 id="venue-title">The clubhouse</h2>
+      </div>
+      <div class="card">
+        <div class="pic" role="img" aria-label="The HGV Zone clubhouse trackside at Elara"></div>
+        <div class="body">
+          <h3 id="venue-name"></h3>
+          <p id="venue-detail"></p>
+          <div class="facts">
+            <div class="fact"><div class="k">Your view</div><div class="v">Front row, Harmon Straightaway</div></div>
+            <div class="fact"><div class="k">Food & drink</div><div class="v">All-inclusive, every night</div></div>
+            <div class="fact"><div class="k">After the sessions</div><div class="v">Elara Terrace Party</div></div>
+            <div class="fact"><div class="k">Address</div><div class="v" id="venue-address"></div></div>
+          </div>
+          <div class="links" id="venue-links"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stay reveal" id="stay">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Your stay</p>
+        <h2>Where you're sleeping</h2>
+      </div>
+      <div id="stay-slot"></div>
+    </div>
+  </section>
+
+  <section class="travel reveal" id="car">
+    <div class="wrap">
+      <div class="grid">
+        <div class="copy" id="travel-copy"></div>
+        <div id="travel-slot"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="know reveal" id="know">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Good to know</p>
+        <h2>Before you land</h2>
+      </div>
+      <div class="grid" id="know-grid"></div>
+    </div>
+  </section>
+
+  <div class="band" role="img" aria-label="Race cars at speed under the lights">
+    <div class="q">Lights out at <span>8:00 PM</span>. We'll see you on the terrace.</div>
+  </div>
+
+  <section class="contacts reveal" id="contacts">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Your Hugo people</p>
+        <h2>Anything at all, ask</h2>
+        <p class="lede">We're on site all weekend. Text is fastest.</p>
+      </div>
+      <div class="people" id="people"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="row-f">
+      <div>
+        <svg class="logo" viewBox="0 0 99 52" aria-label="Hugo"><use href="#hugo-logo"/></svg>
+        <p class="tagline">Built to make you better.</p>
+      </div>
+      <p>Hosted by Hugo · HGV Clubhouse · Hilton Grand Vacations Zone<br><span id="foot-tz"></span></p>
+    </div>
+    <p class="credits"><span id="photo-credits">Photography via <a href="https://unsplash.com" rel="noopener">Unsplash</a>.</span> This page was made for you; please don't forward your personal link.</p>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky"><a class="btn btn-primary" href="#car">Send us your arrival details</a></div>
+
+<script>
+/* =====================================================================
+   CONFIG — the only line you must edit after deploying the Apps Script
+   ===================================================================== */
+const API_URL = ""; // e.g. "https://script.google.com/macros/s/AKfycb.../exec"
+
+/* ---------------------------------------------------------------------
+   Demo content. Used when ?demo=… is in the URL, or until API_URL is set,
+   so the page always has something to show. Mirrors what the sheet sends.
+   --------------------------------------------------------------------- */
+const DEMO = {
+  settings: {
+    event_name: "Grand Prix Weekend in Vegas",
+    event_dates: "Nov 18–22, 2026",
+    intro: "Three nights trackside at the Formula 1 Heineken Las Vegas Grand Prix, as our guest. You’ll have the run of the HGV Clubhouse — a multi-story trackside suite with front-row views of the Harmon Straightaway — with all-inclusive food and drink and private concerts at the Elara Terrace Party every night.",
+    venue_name: "HGV Clubhouse",
+    venue_detail: "Multi-story trackside suite in the Hilton Grand Vacations Zone, right on the Harmon Straightaway. All-inclusive food and premium bar. Your credentials get you in every night.",
+    venue_address: "Harmon Ave & Koval Ln, Las Vegas, NV",
+    venue_map_url: "https://maps.google.com/?q=Elara+by+Hilton+Grand+Vacations+Las+Vegas",
+    rsvp_deadline: "Friday, November 13",
+    dress_code: "Smart casual, and warm. Vegas drops to the 40s°F at night in November — bring a proper jacket for the terrace.",
+    good_to_know: "Sessions run late — most nights wrap after 10 PM.|The clubhouse is all-inclusive. Don’t bring cash for drinks.|Photo ID is required to collect credentials.|Roads around the Strip close early each race night; plan to walk or let us move you.",
+    timezone_note: "All times Pacific and subject to change by F1."
+  },
+  schedule: [
+    { date: "2026-11-18", start: "", end: "", title: "Arrivals & hotel check-in", kind: "travel", location: "Your hotel", detail: "Settle in, then join us for welcome drinks." },
+    { date: "2026-11-18", start: "7:30 PM", end: "", title: "Welcome drinks with the Hugo team", kind: "hugo", location: "Elara", detail: "Casual. Come say hi, grab your weekend credentials." },
+    { date: "2026-11-19", start: "4:30 PM", end: "5:30 PM", title: "Practice 1", kind: "session", location: "HGV Clubhouse · Harmon Straightaway", detail: "" },
+    { date: "2026-11-19", start: "8:00 PM", end: "9:00 PM", title: "Practice 2", kind: "session", location: "HGV Clubhouse · Harmon Straightaway", detail: "Followed by F1 Academy Qualifying at 9:30 PM." },
+    { date: "2026-11-19", start: "9:30 PM", end: "10:00 PM", title: "F1 Academy Qualifying", kind: "session", location: "HGV Clubhouse · Harmon Straightaway", detail: "" },
+    { date: "2026-11-19", start: "Late", end: "", title: "Mark McGrath", kind: "concert", location: "Elara Terrace Party", detail: "POP 2000 Tour", image: "img/acts/mark-mcgrath.jpg", image_credit: "Justin Higuchi, CC BY 2.0" },
+    { date: "2026-11-19", start: "Late", end: "", title: "O-Town", kind: "concert", location: "Elara Terrace Party", detail: "POP 2000 Tour", image: "img/acts/o-town.jpg", image_credit: "Tomás Del Coro, CC BY-SA 2.0" },
+    { date: "2026-11-19", start: "Late", end: "", title: "LFO", kind: "concert", location: "Elara Terrace Party", detail: "POP 2000 Tour", image: "", image_credit: "" },
+    { date: "2026-11-20", start: "4:30 PM", end: "5:30 PM", title: "Practice 3", kind: "session", location: "HGV Clubhouse · Harmon Straightaway", detail: "" },
+    { date: "2026-11-20", start: "8:00 PM", end: "9:00 PM", title: "Formula 1 Qualifying", kind: "session", location: "HGV Clubhouse · Harmon Straightaway", detail: "Grid is set tonight. F1 Academy reverse race follows." },
+    { date: "2026-11-20", start: "Late", end: "", title: "Tucker Wetmore", kind: "concert", location: "Elara Terrace Party", detail: "Live on the terrace", image: "", image_credit: "" },
+    { date: "2026-11-21", start: "4:20 PM", end: "4:55 PM", title: "F1 Academy Feature Race", kind: "session", location: "HGV Clubhouse · Harmon Straightaway", detail: "" },
+    { date: "2026-11-21", start: "8:00 PM", end: "", title: "Formula 1 Heineken Las Vegas Grand Prix", kind: "race", location: "HGV Clubhouse · Harmon Straightaway", detail: "50 laps under the lights. Lights out at 8:00 PM.", highlight: "TRUE" },
+    { date: "2026-11-21", start: "Late", end: "", title: "Bebe Rexha", kind: "concert", location: "Elara Terrace Party", detail: "Race-night headliner", image: "img/acts/bebe-rexha.jpg", image_credit: "Justin Higuchi, CC BY 2.0" },
+    { date: "2026-11-22", start: "", end: "", title: "Check-out & departures", kind: "travel", location: "Your hotel", detail: "Safe travels home. We're around all morning if you need anything." }
+  ],
+  hotels: [
+    { name: "Elara", image: "img/hotels/elara.jpg", image_credit: "", address: "80 E Harmon Ave, Las Vegas, NV 89109", map_url: "https://maps.google.com/?q=Elara+by+Hilton+Grand+Vacations+Las+Vegas", blurb: "A Hilton Grand Vacations tower right beside the HGV Clubhouse. You can walk to the terrace in five minutes." },
+    { name: "Bellagio", image: "img/hotels/bellagio.jpg", image_credit: "David Vives / Unsplash", address: "", map_url: "", blurb: "" },
+    { name: "Caesars Palace", image: "img/hotels/caesars-palace.jpg", image_credit: "Paul Cariou / Unsplash", address: "", map_url: "", blurb: "" },
+    { name: "Paris Las Vegas", image: "img/hotels/paris-las-vegas.jpg", image_credit: "Victor Pot / Unsplash", address: "", map_url: "", blurb: "" },
+    { name: "Wynn", image: "img/hotels/wynn.jpg", image_credit: "Scott Webb / Unsplash", address: "", map_url: "", blurb: "" },
+    { name: "The Venetian", image: "img/hotels/venetian.jpg", image_credit: "Tobias Smietana / Unsplash", address: "", map_url: "", blurb: "" },
+    { name: "Aria", image: "img/hotels/aria.jpg", image_credit: "Kevin Dunlap / Unsplash", address: "", map_url: "", blurb: "" },
+    { name: "MGM Grand", image: "img/hotels/mgm-grand.jpg", image_credit: "Meg von Haartman / Unsplash", address: "", map_url: "", blurb: "" },
+    { name: "Waldorf Astoria", image: "img/hotels/waldorf-astoria.jpg", image_credit: "Frugal Flyer / Unsplash", address: "", map_url: "", blurb: "" }
+  ],
+  contacts: [
+    { order: "1", name: "Ami Lad Pejovic", role: "Your Hugo host · on site all weekend", phone: "732-744-4255", email: "ami@hugoinc.com" }
+  ],
+  guest: {
+    token: "demo", first_name: "Jordan", last_name: "Example", company: "Example Health", title: "VP, Member Experience",
+    guest_of: "Ami Lad Pejovic", plus_one: "",
+    personal_note: "So glad you can make it. Thursday night is the one to be fresh for — the Elara terrace is unreal when the cars go by.",
+    hotel_name: "Elara, a Hilton Grand Vacations Club", hotel_address: "80 E Harmon Ave, Las Vegas, NV 89109",
+    hotel_checkin: "2026-11-18", hotel_checkout: "2026-11-22", hotel_confirmation: "",
+    hotel_notes: "Your room is reserved and covered by Hugo. Give the front desk your name.",
+    hotel_map_url: "https://maps.google.com/?q=Elara+by+Hilton+Grand+Vacations+Las+Vegas", hotel_image: "",
+    airport_pickup: "YES",
+    arrival_date: "", arrival_time: "", arrival_airport: "", arrival_airline: "", arrival_flight: "", arrival_party: "", arrival_phone: "", arrival_notes: "", arrival_submitted_at: "",
+    departure_date: "", departure_time: "", departure_flight: "",
+    shuttle_status: "", shuttle_pickup_time: "", shuttle_meet_point: "", shuttle_vehicle: "", shuttle_driver: "", shuttle_driver_phone: "", shuttle_confirmation: "", shuttle_notes: "",
+    return_shuttle_status: "", return_pickup_time: "", return_meet_point: "", return_notes: ""
+  }
+};
+
+const qs = new URLSearchParams(location.search);
+
+function demoPayload(mode) {
+  const d = JSON.parse(JSON.stringify(DEMO));
+  const g = d.guest;
+  if (mode === "pending" || mode === "booked") {
+    Object.assign(g, { arrival_date: "2026-11-18", arrival_time: "2:35 PM", arrival_airport: "LAS", arrival_airline: "United", arrival_flight: "UA 1623", arrival_party: "Just me", arrival_phone: "(312) 555-0142", arrival_notes: "", arrival_submitted_at: "2026-11-02 09:14", departure_date: "2026-11-22", departure_time: "11:10 AM", departure_flight: "UA 2210", shuttle_status: "Pending" });
+  }
+  if (mode === "booked") {
+    Object.assign(g, { shuttle_status: "Booked", shuttle_pickup_time: "3:05 PM", shuttle_meet_point: "Terminal 3 · Door 55, Arrivals level. Driver will hold a sign with your name.", shuttle_vehicle: "Black Cadillac Escalade", shuttle_driver: "Marco", shuttle_driver_phone: "(702) 555-0188", shuttle_confirmation: "HGO-4471", shuttle_notes: "Flight is tracked — if you land early or late, the car adjusts.", return_shuttle_status: "Booked", return_pickup_time: "8:30 AM", return_meet_point: "Elara main entrance", return_notes: "" });
+  }
+  if (mode === "nopickup") g.airport_pickup = "NO";
+  if (mode === "nobody") { delete d.guest; d.ok = false; d.error = "not-found"; }
+  // ?demo=form&hotel=Bellagio previews the hotel card for another property
+  const hotelOverride = (qs.get("hotel") || "").trim();
+  if (hotelOverride && d.guest) Object.assign(d.guest, { hotel_name: hotelOverride, hotel_address: "", hotel_map_url: "", hotel_notes: "", hotel_image: "" });
+  return d;
+}
+
+/* ------------------------------------------------------------ helpers */
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const yes = (v) => /^(yes|y|true|1|x)$/i.test(String(v || "").trim());
+const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS_LONG = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+function parseDate(s) { // "2026-11-18" or "11/18/2026" → local Date
+  s = String(s || "").trim();
+  let m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if (m) return new Date(+m[1], +m[2] - 1, +m[3]);
+  m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/);
+  if (m) return new Date(+m[3] < 100 ? 2000 + +m[3] : +m[3], +m[1] - 1, +m[2]);
+  const d = new Date(s);
+  return isNaN(d) ? null : d;
+}
+function fmtDay(s) { const d = parseDate(s); return d ? DAYS[d.getDay()] : s; }
+function fmtShort(s) { const d = parseDate(s); return d ? `${MONTHS[d.getMonth()]} ${d.getDate()}` : s; }
+function fmtLong(s) { const d = parseDate(s); return d ? `${DAYS[d.getDay()]}, ${MONTHS_LONG[d.getMonth()]} ${d.getDate()}` : s; }
+function isoDate(d) { return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; }
+function parseTime(s) { // "8:00 PM" | "20:00" → {h, m} or null
+  s = String(s || "").trim();
+  let m = s.match(/^(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m?\.?$/i);
+  if (m) { let h = +m[1] % 12; if (m[3].toLowerCase() === "p") h += 12; return { h, m: +(m[2] || 0) }; }
+  m = s.match(/^(\d{1,2}):(\d{2})$/);
+  if (m) return { h: +m[1], m: +m[2] };
+  return null;
+}
+function to12h(s) { const t = parseTime(s); if (!t) return s; const h = t.h % 12 || 12; return `${h}:${String(t.m).padStart(2, "0")} ${t.h >= 12 ? "PM" : "AM"}`; }
+function to24h(s) { const t = parseTime(s); return t ? `${String(t.h).padStart(2, "0")}:${String(t.m).padStart(2, "0")}` : ""; }
+function timeRange(a, b) { if (!a) return ""; return b ? `${a} – ${b}` : a; }
+function initials(name) { return String(name || "").split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join("") || "H"; }
+function telHref(p) { return "tel:" + String(p || "").replace(/[^\d+]/g, ""); }
+function smsHref(p) { return "sms:" + String(p || "").replace(/[^\d+]/g, ""); }
+
+/* ------------------------------------------------------------ state */
+const TOKEN = (qs.get("g") || qs.get("token") || "").trim();
+const DEMO_MODE = qs.get("demo");
+let DATA = null;
+
+/* ------------------------------------------------------------ boot */
+async function init() {
+  if (DEMO_MODE || !API_URL) {
+    DATA = demoPayload(DEMO_MODE || "form");
+    render(DATA);
+    if (!API_URL && !DEMO_MODE) {
+      $("#hero-notice").innerHTML = `<div class="notice warn"><span>⚙︎</span><span><b>Preview mode.</b> This page isn't connected to the Google Sheet yet — it's showing a sample guest. Set <code>API_URL</code> in index.html to go live.</span></div>`;
+    }
+    return;
+  }
+  try {
+    const url = `${API_URL}${API_URL.includes("?") ? "&" : "?"}g=${encodeURIComponent(TOKEN)}&_=${Date.now()}`;
+    DATA = await getJSON(url);
+  } catch (err) {
+    console.error(err);
+    DATA = { ok: false, error: "network", settings: DEMO.settings, schedule: DEMO.schedule, contacts: DEMO.contacts };
+  }
+  render(DATA);
+}
+
+async function getJSON(url) {
+  try {
+    const r = await fetch(url, { method: "GET", redirect: "follow", cache: "no-store" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return await r.json();
+  } catch (e) {
+    return jsonp(url); // belt and braces: Apps Script also answers JSONP
+  }
+}
+function jsonp(url) {
+  return new Promise((resolve, reject) => {
+    const cb = "gp_cb_" + Math.random().toString(36).slice(2);
+    const s = document.createElement("script");
+    const t = setTimeout(() => { cleanup(); reject(new Error("timeout")); }, 15000);
+    function cleanup() { clearTimeout(t); delete window[cb]; s.remove(); }
+    window[cb] = (d) => { cleanup(); resolve(d); };
+    s.onerror = () => { cleanup(); reject(new Error("jsonp failed")); };
+    s.src = url + "&callback=" + cb;
+    document.head.appendChild(s);
+  });
+}
+async function postJSON(payload) {
+  if (!API_URL) { // demo: pretend the sheet took it
+    await new Promise((r) => setTimeout(r, 900));
+    const g = DATA.guest;
+    Object.assign(g, payload, { arrival_submitted_at: new Date().toISOString().slice(0, 16).replace("T", " ") });
+    if (!g.shuttle_status) g.shuttle_status = "Pending";
+    return { ok: true, guest: g, settings: DATA.settings, schedule: DATA.schedule, contacts: DATA.contacts };
+  }
+  // Sent as text/plain on purpose: no CORS preflight, which Apps Script can't answer.
+  const r = await fetch(API_URL, { method: "POST", redirect: "follow", body: JSON.stringify(payload) });
+  const text = await r.text();
+  try { return JSON.parse(text); } catch (e) { throw new Error("Unexpected reply from the sheet"); }
+}
+
+/* ------------------------------------------------------------ render */
+function render(data) {
+  const S = Object.assign({}, DEMO.settings, data.settings || {});
+  const schedule = (data.schedule && data.schedule.length) ? data.schedule : DEMO.schedule;
+  const contacts = (data.contacts && data.contacts.length) ? data.contacts : DEMO.contacts;
+  const hotels = Array.isArray(data.hotels) ? data.hotels : DEMO.hotels;
+  const g = data.guest || null;
+
+  document.title = g ? `${g.first_name}, your Grand Prix Weekend in Vegas · Hugo` : "Your Grand Prix Weekend in Vegas · Hugo";
+
+  // hero
+  const hi = $("#hi");
+  hi.classList.remove("skel");
+  hi.textContent = g && g.first_name ? `Hi ${g.first_name},` : "Hi there,";
+  $("#h1-title").textContent = `welcome to your ${S.event_name || "Grand Prix Weekend in Vegas"}`;
+  $("#chip-dates").textContent = S.event_dates || "";
+  $("#top-dates").textContent = `${S.event_dates || ""} · Las Vegas`;
+  $("#chip-venue").textContent = `${S.venue_name || "HGV Clubhouse"} · Harmon Straightaway`;
+  const actions = [`<a class="btn btn-primary" href="#schedule">See the weekend</a>`];
+  const pickup = !!(g && yes(g.airport_pickup));
+  if (pickup && !g.arrival_submitted_at) actions.push(`<a class="btn btn-ghost" href="#car">Send your arrival details</a>`);
+  else if (pickup) actions.push(`<a class="btn btn-ghost" href="#car">Your hotel & car</a>`);
+  else if (g) actions.push(`<a class="btn btn-ghost" href="#stay">Your hotel</a>`);
+  $("#hero-actions").innerHTML = actions.join("");
+
+  const notice = $("#hero-notice");
+  if (!g) {
+    const host = contacts[0];
+    const who = host ? `${esc(host.name)}${host.phone ? ` · <a href="${smsHref(host.phone)}">${esc(host.phone)}</a>` : ""}${host.email ? ` · <a href="mailto:${esc(host.email)}">${esc(host.email)}</a>` : ""}` : "your Hugo host";
+    const why = data.error === "network" ? "We couldn't reach the guest list just now. Refresh in a moment, or" : "This link didn't match an invitation. Check the link you were sent, or";
+    notice.innerHTML = `<div class="notice err"><span>!</span><span>${why} reach ${who}.</span></div>`;
+  }
+
+  // intro + note
+  $("#intro-text").textContent = S.intro || "";
+  const noteSlot = $("#note-slot");
+  if (g && g.personal_note) {
+    const host = g.guest_of || (contacts[0] && contacts[0].name) || "Your Hugo host";
+    noteSlot.innerHTML = `<div class="note"><p>${esc(g.personal_note)}</p><div class="who"><div class="avatar">${esc(initials(host))}</div><div><b>${esc(host)}</b><span>Hugo</span></div></div></div>`;
+  } else if (g) {
+    const host = g.guest_of || (contacts[0] && contacts[0].name) || "Your Hugo host";
+    noteSlot.innerHTML = `<div class="note"><p>We're thrilled to have you${g.company ? ` and the ${esc(g.company)} team` : ""} with us. Everything you need for the weekend is on this page, and it updates as plans firm up.</p><div class="who"><div class="avatar">${esc(initials(host))}</div><div><b>${esc(host)}</b><span>Hugo</span></div></div></div>`;
+  } else {
+    noteSlot.innerHTML = "";
+  }
+
+  renderSchedule(schedule, S);
+  renderVenue(S);
+  renderStay(g, contacts, hotels);
+  renderTravel(g, S, contacts);
+  renderKnow(S);
+  renderContacts(contacts);
+  $("#foot-tz").textContent = S.timezone_note || "";
+  updateSticky(g);
+  observeReveal();
+}
+
+function renderSchedule(items, S) {
+  const byDate = new Map();
+  items.forEach((it) => { const k = String(it.date || "").trim(); if (!k) return; if (!byDate.has(k)) byDate.set(k, []); byDate.get(k).push(it); });
+  const dates = [...byDate.keys()].sort((a, b) => (parseDate(a) || 0) - (parseDate(b) || 0));
+  const isNight = (list) => list.some((it) => /session|race|concert/i.test(it.kind || ""));
+  const music = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`;
+
+  let nights = "", travel = "";
+  dates.forEach((date) => {
+    const list = byDate.get(date);
+    if (isNight(list)) {
+      const race = list.find((it) => /race/i.test(it.kind || "") || yes(it.highlight));
+      const sessions = list.filter((it) => !/concert/i.test(it.kind || ""));
+      const concerts = list.filter((it) => /concert/i.test(it.kind || ""));
+      const rows = sessions.map((it) => `<li><span class="t">${esc(timeRange(it.start, it.end)) || "&nbsp;"}</span><span class="w ${it === race ? "big" : ""}">${esc(it.title)}</span>${it.detail ? `<span class="d">${esc(it.detail)}</span>` : ""}</li>`).join("");
+      const concert = concerts.length ? `<div class="concert"><div class="lab">${music}${esc(concerts[0].location || "Concert")}</div><div class="acts">${concerts.map(actHTML).join("")}</div></div>` : "";
+      nights += `<article class="night ${race ? "race" : ""}">
+        <div class="day"><span style="color:inherit">${esc(fmtDay(date))}</span><span>${esc(fmtShort(date))}</span></div>
+        <h3 class="title">${race ? `Race night<small>${esc(race.title)}</small>` : esc(fmtDay(date))}</h3>
+        <ul>${rows}</ul>${concert}</article>`;
+    } else {
+      list.forEach((it) => {
+        travel += `<div class="travel-strip"><span class="k">${esc(fmtDay(date).slice(0, 3))} · ${esc(fmtShort(date))}</span><div><b>${esc(it.title)}</b>${it.location || it.detail ? `<small>${esc([it.location, it.detail].filter(Boolean).join(" — "))}</small>` : ""}</div></div>`;
+      });
+    }
+  });
+  $("#nights").innerHTML = nights;
+  $("#travel-days").innerHTML = travel;
+  $("#tz-note").textContent = S.timezone_note || "";
+  $("#ics-btn").onclick = () => downloadICS(items, S);
+  const credits = photoCredits(items);
+  $("#photo-credits").innerHTML = `Photography via <a href="https://unsplash.com" rel="noopener">Unsplash</a>${credits.length ? `; artist photos: ${credits.map(esc).join(" · ")} via Wikimedia Commons` : ""}.`;
+}
+
+// "LFO" stays LFO; "Tucker Wetmore" becomes TW.
+function actMark(name) {
+  const words = String(name || "").replace(/[^A-Za-z0-9 ]/g, " ").trim().split(/\s+/).filter(Boolean);
+  if (!words.length) return "♪";
+  return (words.length === 1 ? words[0].slice(0, 3) : words.map((w) => w[0]).join("").slice(0, 3)).toUpperCase();
+}
+
+function actHTML(c) {
+  const img = String(c.image || "").trim();
+  const credit = String(c.image_credit || "").trim();
+  const pic = img
+    ? `<div class="act-pic" style="background-image:url('${esc(img)}')" role="img" aria-label="${esc(c.title)}" ${credit ? `title="Photo: ${esc(credit)}"` : ""}></div>`
+    : `<div class="act-pic tile" aria-hidden="true">${esc(actMark(c.title))}</div>`;
+  const when = c.start && !/^late$/i.test(c.start) ? ` · ${esc(c.start)}` : "";
+  return `<div class="act">${pic}<div><b>${esc(c.title)}</b>${c.detail || when ? `<small>${esc(c.detail || "")}${when}</small>` : ""}</div></div>`;
+}
+
+function photoCredits(items) {
+  const seen = new Set();
+  items.forEach((it) => { const c = String(it.image_credit || "").trim(); if (c) seen.add(c); });
+  return [...seen];
+}
+
+function renderVenue(S) {
+  $("#venue-name").textContent = S.venue_name || "HGV Clubhouse";
+  $("#venue-detail").textContent = S.venue_detail || "";
+  $("#venue-address").textContent = S.venue_address || "";
+  const links = [];
+  if (S.venue_map_url) links.push(`<a class="btn btn-ghost btn-sm" href="${esc(S.venue_map_url)}" target="_blank" rel="noopener">Open in Maps</a>`);
+  links.push(`<a class="btn btn-ghost btn-sm" href="https://www.f1lasvegasgp.com/" target="_blank" rel="noopener">About the circuit</a>`);
+  $("#venue-links").innerHTML = links.join("");
+}
+
+// "Elara, a Hilton Grand Vacations Club" should find the Hotels row called "Elara".
+function findHotel(name, hotels) {
+  const norm = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const n = norm(name);
+  if (!n) return null;
+  let best = null;
+  (hotels || []).forEach((h) => {
+    const hn = norm(h.name);
+    if (!hn) return;
+    if (n === hn || n.includes(hn) || hn.includes(n)) { if (!best || hn.length > norm(best.name).length) best = h; }
+  });
+  return best;
+}
+
+function renderStay(g, contacts, hotels) {
+  const slot = $("#stay-slot");
+  if (!g) { slot.innerHTML = `<div class="empty">Your hotel details show here once we can match your link to an invitation.</div>`; return; }
+  if (!g.hotel_name) { slot.innerHTML = `<div class="empty">We're finalising your hotel and will add it here shortly. Your room is on us.</div>`; return; }
+  const hotel = findHotel(g.hotel_name, hotels) || {};
+  const image = String(g.hotel_image || hotel.image || "").trim();
+  const address = g.hotel_address || hotel.address || "";
+  const blurb = g.hotel_notes || hotel.blurb || "";
+  const nights = (() => { const a = parseDate(g.hotel_checkin), b = parseDate(g.hotel_checkout); return a && b ? Math.round((b - a) / 864e5) : null; })();
+  const links = [];
+  const mapUrl = g.hotel_map_url || hotel.map_url || `https://maps.google.com/?q=${encodeURIComponent(g.hotel_name + " " + (address || "Las Vegas"))}`;
+  if (mapUrl) links.push(`<a class="btn btn-ghost btn-sm" href="${esc(mapUrl)}" target="_blank" rel="noopener">Open in Maps</a>`);
+  if (address) links.push(`<button class="btn btn-ghost btn-sm" type="button" data-copy="${esc(address)}">Copy address</button>`);
+  slot.innerHTML = `<div class="card">
+    <div class="pic" role="img" aria-label="${esc(g.hotel_name)}" ${image ? `style="background-image:url('${esc(image)}')"` : ""} ${hotel.image_credit ? `title="Photo: ${esc(hotel.image_credit)}"` : ""}></div>
+    <div class="body">
+      <p class="eyebrow">Your hotel</p>
+      <h3 class="hotel">${esc(g.hotel_name)}</h3>
+      ${address ? `<p class="addr">${esc(address)}</p>` : ""}
+      <div class="facts">
+        <div class="fact"><div class="k">Check-in</div><div class="v">${esc(g.hotel_checkin ? fmtLong(g.hotel_checkin).replace(/^(\w{3})\w*, /, "$1 · ") : "TBC")}</div></div>
+        <div class="fact"><div class="k">Check-out</div><div class="v">${esc(g.hotel_checkout ? fmtLong(g.hotel_checkout).replace(/^(\w{3})\w*, /, "$1 · ") : "TBC")}</div></div>
+        <div class="fact"><div class="k">${g.hotel_confirmation ? "Confirmation" : "Nights"}</div><div class="v">${esc(g.hotel_confirmation || (nights ? `${nights} nights, on Hugo` : "On Hugo"))}</div></div>
+      </div>
+      ${blurb ? `<p class="notes">${esc(blurb)}</p>` : ""}
+      ${g.plus_one ? `<p class="notes">Booked for you and <b style="color:var(--text)">${esc(g.plus_one)}</b>.</p>` : ""}
+      <div class="links">${links.join("")}</div>
+    </div></div>`;
+  slot.querySelectorAll("[data-copy]").forEach((b) => b.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy); const t = b.textContent; b.textContent = "Copied"; setTimeout(() => (b.textContent = t), 1400); } catch (e) {}
+  }));
+}
+
+/* ------------------------------------------------------------ travel / car */
+function renderTravel(g, S, contacts) {
+  const copy = $("#travel-copy"), slot = $("#travel-slot");
+  const section = $("#car"), navLink = $("#nav-car");
+  const pickup = !!(g && yes(g.airport_pickup));
+  // Guests who aren't on the pickup list never see this section.
+  section.hidden = !pickup;
+  if (navLink) navLink.hidden = !pickup;
+  if (!pickup) { copy.innerHTML = ""; slot.innerHTML = ""; return; }
+
+  const submitted = !!g.arrival_submitted_at;
+  const status = String(g.shuttle_status || "").toLowerCase();
+  const booked = status === "booked";
+  const notNeeded = status === "not needed";
+
+  copy.innerHTML = `<p class="eyebrow">Getting you there</p><h2>${booked ? "Your car is booked" : submitted ? "Your car" : "We'll pick you up"}</h2><div class="bar"></div>
+    <p class="lede" style="margin-top:26px">${booked
+      ? `A driver will be waiting when you land at <strong>${esc(g.arrival_airport || "LAS")}</strong>. The details are on the right; they're also in your inbox.`
+      : submitted
+        ? `Thanks, we have your flight. We're booking your car now and this page will update the moment it's confirmed, usually within two business days.`
+        : `We'll have a car waiting at <strong>Harry Reid International (LAS)</strong> to take you to ${esc(g.hotel_name || "your hotel")}. Send us your arrival and we'll handle the rest.`}</p>
+    ${!submitted ? `<ol class="steps">
+      <li><span class="num">01</span><div><b>Your flight in</b><span>Airline, flight number and landing time.</span></div></li>
+      <li><span class="num">02</span><div><b>Who's with you</b><span>Anyone travelling with you, so the right car shows up.</span></div></li>
+      <li><span class="num">03</span><div><b>A mobile number</b><span>So your driver can reach you at the curb.</span></div></li>
+    </ol>${S.rsvp_deadline ? `<div class="deadline">Please send by <b>${esc(S.rsvp_deadline)}</b></div>` : ""}` : ""}`;
+
+  if (!submitted || window.__editing) { slot.innerHTML = formHTML(g, S); bindForm(g, S); return; }
+
+  const pill = booked ? `<span class="status booked"><span class="dot"></span>Booked</span>`
+    : notNeeded ? `<span class="status none"><span class="dot"></span>Not needed</span>`
+    : `<span class="status pending"><span class="dot"></span>Booking your car</span>`;
+
+  const arrival = `<div class="summary">
+      <div><div class="k">Landing</div><div class="v">${esc(g.arrival_date ? fmtLong(g.arrival_date) : "—")}${g.arrival_time ? `<br>${esc(g.arrival_time)}` : ""}</div></div>
+      <div><div class="k">Flight</div><div class="v">${esc([g.arrival_airline, g.arrival_flight].filter(Boolean).join(" ") || "—")}${g.arrival_airport ? `<br>into ${esc(g.arrival_airport)}` : ""}</div></div>
+      <div><div class="k">Travelling with</div><div class="v">${esc(g.arrival_party || "Just you")}</div></div>
+      <div><div class="k">Mobile</div><div class="v">${esc(g.arrival_phone || "—")}</div></div>
+    </div>`;
+
+  let carHTML = "";
+  if (booked) {
+    carHTML = `<div class="car booked">
+      <div class="head"><h3>Arrival car</h3>${pill}</div>
+      <div class="big">
+        <div><div class="k">Pickup</div><div class="v">${esc(g.shuttle_pickup_time || "On landing")}</div></div>
+        <div><div class="k">Vehicle</div><div class="v sm">${esc(g.shuttle_vehicle || "Private car")}</div></div>
+        <div style="grid-column:1/-1"><div class="k">Where to meet</div><div class="v sm">${esc(g.shuttle_meet_point || "Your driver will text you on landing.")}</div></div>
+        ${g.shuttle_driver ? `<div><div class="k">Driver</div><div class="v sm">${esc(g.shuttle_driver)}${g.shuttle_driver_phone ? `<br><a href="${telHref(g.shuttle_driver_phone)}">${esc(g.shuttle_driver_phone)}</a>` : ""}</div></div>` : ""}
+        ${g.shuttle_confirmation ? `<div><div class="k">Confirmation</div><div class="v sm">${esc(g.shuttle_confirmation)}</div></div>` : ""}
+      </div>
+      ${arrival}
+      <div class="foot"><span>${esc(g.shuttle_notes || "Your flight is tracked. If it moves, the car moves with it.")}</span><a class="link" href="#" data-edit>Plans changed?</a></div>
+    </div>`;
+  } else {
+    carHTML = `<div class="car">
+      <div class="head"><h3>${notNeeded ? "Airport transfer" : "Your details are in"}</h3>${pill}</div>
+      ${arrival}
+      <div class="foot"><span>${notNeeded ? esc(g.shuttle_notes || "No airport car on this booking. Message us if that changes.") : "You'll see the driver, car and meeting point right here once it's booked."}</span><a class="link" href="#" data-edit>Update details</a></div>
+    </div>`;
+  }
+
+  let returnHTML = "";
+  if (String(g.return_shuttle_status || "").toLowerCase() === "booked") {
+    returnHTML = `<div class="car booked">
+      <div class="head"><h3>Car to the airport</h3><span class="status booked"><span class="dot"></span>Booked</span></div>
+      <div class="big">
+        <div><div class="k">Pickup</div><div class="v">${esc(g.return_pickup_time || "TBC")}</div></div>
+        <div><div class="k">Date</div><div class="v sm">${esc(g.departure_date ? fmtLong(g.departure_date) : "Departure day")}</div></div>
+        <div style="grid-column:1/-1"><div class="k">Where to meet</div><div class="v sm">${esc(g.return_meet_point || "Hotel main entrance")}</div></div>
+        ${g.departure_flight ? `<div><div class="k">Your flight</div><div class="v sm">${esc(g.departure_flight)}${g.departure_time ? ` · ${esc(g.departure_time)}` : ""}</div></div>` : ""}
+      </div>
+      ${g.return_notes ? `<div class="foot"><span>${esc(g.return_notes)}</span></div>` : ""}
+    </div>`;
+  } else if (g.departure_date || g.departure_flight) {
+    returnHTML = `<div class="tip"><h3>Heading home</h3><p>You told us you leave ${esc(g.departure_date ? fmtLong(g.departure_date) : "")}${g.departure_time ? ` at ${esc(g.departure_time)}` : ""}${g.departure_flight ? ` on ${esc(g.departure_flight)}` : ""}. We'll confirm a car to the airport closer to the weekend.</p></div>`;
+  }
+
+  slot.innerHTML = `<div class="stack">${carHTML}${returnHTML}</div>`;
+  slot.querySelectorAll("[data-edit]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); window.__editing = true; renderTravel(g, S, contacts); $("#car").scrollIntoView({ behavior: "smooth" }); }));
+}
+
+function formHTML(g, S) {
+  const dayOpts = [["2026-11-18", "Wed, Nov 18"], ["2026-11-19", "Thu, Nov 19"], ["2026-11-20", "Fri, Nov 20"]];
+  const picked = g.arrival_date || "";
+  const isOther = picked && !dayOpts.some(([v]) => v === picked);
+  const seg = dayOpts.map(([v, l], i) => `<input type="radio" name="arrival_day" id="day${i}" value="${v}" ${picked === v || (!picked && i === 0) ? "checked" : ""}><label class="opt" for="day${i}">${l}</label>`).join("")
+    + `<input type="radio" name="arrival_day" id="dayx" value="other" ${isOther ? "checked" : ""}><label class="opt" for="dayx">Another day</label>`;
+  const airports = ["LAS", "HND", "VGT", "Other"];
+  const ap = g.arrival_airport || "LAS";
+  return `<form class="panel" id="arrival-form" novalidate>
+    <h3>${g.arrival_submitted_at ? "Update your arrival" : "Send us your arrival"}</h3>
+    <p class="sub">Takes a minute. We'll confirm the car on this page${S.rsvp_deadline ? `, so please send by ${esc(S.rsvp_deadline)}` : ""}.</p>
+    <div class="form-grid">
+      <div class="field"><label>Landing on</label><div class="seg">${seg}</div></div>
+      <div class="field" id="other-day" ${isOther ? "" : "hidden"}><label for="f-date">Date</label><input id="f-date" type="date" name="arrival_date_other" min="2026-11-10" max="2026-11-25" value="${isOther ? esc(picked) : ""}"></div>
+      <div class="row">
+        <div class="field"><label for="f-time">Landing time <i>(local)</i></label><input id="f-time" type="time" name="arrival_time" required value="${esc(to24h(g.arrival_time))}"></div>
+        <div class="field"><label for="f-airport">Airport</label><select id="f-airport" name="arrival_airport">${airports.map((a) => `<option value="${a}" ${a === ap || (a === "Other" && !airports.includes(ap)) ? "selected" : ""}>${a === "LAS" ? "LAS · Harry Reid Intl" : a === "HND" ? "HND · Henderson Executive" : a === "VGT" ? "VGT · North Las Vegas" : "Other"}</option>`).join("")}</select></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="f-airline">Airline</label><input id="f-airline" name="arrival_airline" placeholder="United" value="${esc(g.arrival_airline)}" autocomplete="off"></div>
+        <div class="field"><label for="f-flight">Flight number</label><input id="f-flight" name="arrival_flight" placeholder="UA 1623" required value="${esc(g.arrival_flight)}" autocomplete="off"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="f-party">Travelling with <i>(optional)</i></label><input id="f-party" name="arrival_party" placeholder="Just me / Alex Sample" value="${esc(g.arrival_party)}"></div>
+        <div class="field"><label for="f-phone">Mobile for the driver</label><input id="f-phone" name="arrival_phone" type="tel" placeholder="(312) 555-0142" required value="${esc(g.arrival_phone)}" autocomplete="tel"></div>
+      </div>
+      <div class="field"><label for="f-notes">Anything we should know? <i>(optional)</i></label><textarea id="f-notes" name="arrival_notes" placeholder="Extra bags, a connecting flight, accessibility needs…">${esc(g.arrival_notes)}</textarea></div>
+      <details class="more" ${g.departure_date || g.departure_flight ? "open" : ""}><summary>Add your flight home too</summary>
+        <div class="form-grid">
+          <div class="row">
+            <div class="field"><label for="f-ddate">Departure date</label><input id="f-ddate" type="date" name="departure_date" min="2026-11-19" max="2026-11-26" value="${esc(g.departure_date)}"></div>
+            <div class="field"><label for="f-dtime">Take-off time</label><input id="f-dtime" type="time" name="departure_time" value="${esc(to24h(g.departure_time))}"></div>
+          </div>
+          <div class="field"><label for="f-dflight">Flight</label><input id="f-dflight" name="departure_flight" placeholder="UA 2210" value="${esc(g.departure_flight)}"></div>
+        </div>
+      </details>
+      <div class="form-foot">
+        <button class="btn btn-primary" type="submit" id="f-submit">${g.arrival_submitted_at ? "Save changes" : "Send to Hugo"}</button>
+        ${g.arrival_submitted_at ? `<button class="btn btn-ghost" type="button" id="f-cancel">Cancel</button>` : ""}
+        <small>Only the Hugo events team sees this.</small>
+      </div>
+      <div class="form-msg" id="f-msg" aria-live="polite"></div>
+    </div>
+  </form>`;
+}
+
+function bindForm(g, S) {
+  const form = $("#arrival-form");
+  const other = $("#other-day");
+  form.querySelectorAll('input[name="arrival_day"]').forEach((r) => r.addEventListener("change", () => { other.hidden = r.value !== "other" || !r.checked; if (r.value === "other" && r.checked) $("#f-date").focus(); }));
+  const cancel = $("#f-cancel");
+  if (cancel) cancel.addEventListener("click", () => { window.__editing = false; render(DATA); $("#car").scrollIntoView({ behavior: "smooth" }); });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const msg = $("#f-msg"); msg.textContent = "";
+    const fd = new FormData(form);
+    const day = fd.get("arrival_day");
+    const date = day === "other" ? fd.get("arrival_date_other") : day;
+    const payload = {
+      token: g.token || TOKEN, action: "arrival",
+      arrival_date: date || "",
+      arrival_time: to12h(fd.get("arrival_time")),
+      arrival_airport: fd.get("arrival_airport") || "",
+      arrival_airline: (fd.get("arrival_airline") || "").trim(),
+      arrival_flight: (fd.get("arrival_flight") || "").trim(),
+      arrival_party: (fd.get("arrival_party") || "").trim(),
+      arrival_phone: (fd.get("arrival_phone") || "").trim(),
+      arrival_notes: (fd.get("arrival_notes") || "").trim(),
+      departure_date: fd.get("departure_date") || "",
+      departure_time: to12h(fd.get("departure_time")),
+      departure_flight: (fd.get("departure_flight") || "").trim(),
+      user_agent: navigator.userAgent
+    };
+    form.querySelectorAll(".field").forEach((f) => f.classList.remove("invalid"));
+    const missing = [];
+    if (!payload.arrival_date) missing.push(["#other-day", "the day you land"]);
+    if (!payload.arrival_time) missing.push(["#f-time", "your landing time"]);
+    if (!payload.arrival_flight) missing.push(["#f-flight", "your flight number"]);
+    if (!payload.arrival_phone) missing.push(["#f-phone", "a mobile number"]);
+    if (missing.length) {
+      missing.forEach(([sel]) => { const el = $(sel); (el.closest(".field") || el).classList.add("invalid"); });
+      msg.textContent = "We still need " + missing.map((m) => m[1]).join(", ").replace(/, ([^,]*)$/, " and $1") + ".";
+      const first = $(missing[0][0]); (first.querySelector("input") || first).focus();
+      return;
+    }
+    const btn = $("#f-submit"); btn.disabled = true; btn.textContent = "Sending…";
+    try {
+      const res = await postJSON(payload);
+      if (!res || !res.ok) throw new Error(res && res.error || "Something went wrong");
+      window.__editing = false;
+      DATA = Object.assign({}, DATA, res, { guest: res.guest || Object.assign({}, g, payload) });
+      render(DATA);
+      $("#car").scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (err) {
+      console.error(err);
+      btn.disabled = false; btn.textContent = g.arrival_submitted_at ? "Save changes" : "Send to Hugo";
+      msg.textContent = `That didn't go through (${err.message}). Try again, or text your details to your Hugo host below.`;
+    }
+  });
+}
+
+/* ------------------------------------------------------------ know / contacts */
+function renderKnow(S) {
+  const ic = {
+    coat: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 13.5 17 3H7L3.6 13.5a1 1 0 0 0 .6 1.3l3.3 1.1V21h9v-5.1l3.3-1.1a1 1 0 0 0 .6-1.3Z"/><path d="M12 3v18M9 3c0 2 1.5 4 3 4s3-2 3-4"/></svg>`,
+    clock: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
+    star: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3Z"/></svg>`,
+    id: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="12" r="2.2"/><path d="M14 10h4M14 14h4M5.5 17c.7-1.6 2-2.5 3.5-2.5s2.8.9 3.5 2.5"/></svg>`,
+    road: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21 9 3h6l5 18"/><path d="M12 6v2M12 11v2M12 16v2"/></svg>`
+  };
+  const items = [];
+  if (S.dress_code) items.push({ icon: ic.coat, title: "What to wear", text: S.dress_code });
+  String(S.good_to_know || "").split("|").map((s) => s.trim()).filter(Boolean).forEach((t, i) => {
+    const title = /late|pm|hour|wrap/i.test(t) ? "Late nights" : /inclusive|cash|drink/i.test(t) ? "On the house" : /id|credential|photo/i.test(t) ? "Bring ID" : /road|close|walk|traffic/i.test(t) ? "Getting around" : "Good to know";
+    const icon = /late|pm|hour|wrap/i.test(t) ? ic.clock : /inclusive|cash|drink/i.test(t) ? ic.star : /id|credential|photo/i.test(t) ? ic.id : /road|close|walk|traffic/i.test(t) ? ic.road : ic.star;
+    items.push({ icon, title, text: t });
+  });
+  $("#know-grid").innerHTML = items.map((it) => `<div class="item"><div class="ic">${it.icon}</div><div><b>${esc(it.title)}</b><p>${esc(it.text)}</p></div></div>`).join("");
+}
+
+function renderContacts(contacts) {
+  $("#people").innerHTML = contacts.map((c) => {
+    const ways = [];
+    if (c.phone) { ways.push(`<a class="btn btn-ghost btn-sm" href="${smsHref(c.phone)}">Text</a>`); ways.push(`<a class="btn btn-ghost btn-sm" href="${telHref(c.phone)}">Call</a>`); }
+    if (c.email) ways.push(`<a class="btn btn-ghost btn-sm" href="mailto:${esc(c.email)}">Email</a>`);
+    const av = c.photo_url ? `<div class="avatar photo" style="background-image:url('${esc(c.photo_url)}')">${esc(initials(c.name))}</div>` : `<div class="avatar">${esc(initials(c.name))}</div>`;
+    return `<div class="person"><div class="id">${av}<div><b>${esc(c.name)}</b><span>${esc(c.role || "Hugo")}</span>${c.phone ? `<span><br>${esc(c.phone)}</span>` : ""}</div></div><div class="ways">${ways.join("")}</div></div>`;
+  }).join("");
+}
+
+/* ------------------------------------------------------------ calendar file */
+function downloadICS(items, S) {
+  const pad = (n) => String(n).padStart(2, "0");
+  const stamp = (d) => `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}00Z`;
+  const PT_OFFSET = 8; // Las Vegas is UTC-8 in late November
+  const toUTC = (dateStr, t) => { const d = parseDate(dateStr); if (!d || !t) return null; return new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), t.h + PT_OFFSET, t.m)); };
+  const wrapLine = (s) => s.replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/,/g, "\\,").replace(/;/g, "\\;");
+  const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Hugo//Grand Prix Weekend//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "X-WR-CALNAME:Grand Prix Weekend · Hugo"];
+  let n = 0;
+  items.forEach((it, i) => {
+    const t = parseTime(it.start); if (!t) return;
+    const start = toUTC(it.date, t); if (!start) return;
+    const te = parseTime(it.end);
+    const end = te ? toUTC(it.date, te) : new Date(start.getTime() + (/race/i.test(it.kind) ? 2.5 : 1) * 3600e3);
+    lines.push("BEGIN:VEVENT", `UID:gp-${it.date}-${i}@hugoinc.com`, `DTSTAMP:${stamp(new Date())}`, `DTSTART:${stamp(start)}`, `DTEND:${stamp(end)}`,
+      `SUMMARY:${wrapLine((/concert/i.test(it.kind) ? "🎤 " : /race/i.test(it.kind) ? "🏁 " : "") + it.title)}`,
+      `LOCATION:${wrapLine(it.location || S.venue_name || "")}`, `DESCRIPTION:${wrapLine([it.detail, "Hosted by Hugo."].filter(Boolean).join(" "))}`, "END:VEVENT");
+    n++;
+  });
+  lines.push("END:VCALENDAR");
+  if (!n) return;
+  const blob = new Blob([lines.join("\r\n")], { type: "text/calendar;charset=utf-8" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "grand-prix-weekend-hugo.ics"; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+
+/* ------------------------------------------------------------ sticky + reveal */
+let stickyIO = null;
+function updateSticky(g) {
+  const s = $("#sticky");
+  const eligible = !!(g && yes(g.airport_pickup) && !g.arrival_submitted_at);
+  if (stickyIO) { stickyIO.disconnect(); stickyIO = null; }
+  if (!eligible || !("IntersectionObserver" in window)) { s.classList.toggle("show", eligible); return; }
+  // Show the floating button only once the hero's own buttons have scrolled
+  // away, and hide it again while the form itself is on screen.
+  const seen = { hero: true, car: false };
+  stickyIO = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { seen[e.target.id === "hero" ? "hero" : "car"] = e.isIntersecting; });
+    s.classList.toggle("show", !seen.hero && !seen.car);
+  }, { threshold: 0.05 });
+  stickyIO.observe($("#hero")); stickyIO.observe($("#car"));
+}
+function observeReveal() {
+  const els = document.querySelectorAll(".reveal:not(.in)");
+  if (!("IntersectionObserver" in window)) { els.forEach((e) => e.classList.add("in")); return; }
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+  els.forEach((e) => io.observe(e));
+}
+
+init();
+</script>
+</body>
+</html>
