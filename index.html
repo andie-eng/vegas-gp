@@ -125,6 +125,10 @@
   .btn-sm { padding: 11px 16px; font-size: 14px; }
   .btn[disabled] { opacity: 0.55; cursor: progress; }
 
+  .loading { margin-top: 22px; color: var(--muted); font-size: 14px; letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; }
+  .loading::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--yellow); animation: pulse 1.2s ease-in-out infinite; }
+  .loading[hidden] { display: none; }
+
   /* ---------- notice banners ---------- */
   .notice { border-radius: var(--radius-sm); padding: 14px 18px; font-size: 15px; display: flex; gap: 12px; align-items: flex-start; margin-top: 22px; }
   .notice.warn { background: rgba(255, 206, 7, 0.1); border: 1px solid rgba(255, 206, 7, 0.35); color: #ffe783; }
@@ -381,6 +385,7 @@
       <div class="actions" id="hero-actions">
         <a class="btn btn-primary" href="#schedule">See the weekend</a>
       </div>
+      <p class="loading" id="loading-note">Finding your invitation…</p>
       <div id="hero-notice"></div>
     </div>
   </section>
@@ -643,11 +648,22 @@ async function init() {
     }
     return;
   }
+  // The sheet can take several seconds to answer (Apps Script spins up on
+  // demand), so show the last answer we got for this link straight away and
+  // refresh it in the background. Only this browser ever sees the copy.
+  const cacheKey = "gp:" + TOKEN;
+  let cached = null;
+  try { cached = TOKEN ? JSON.parse(localStorage.getItem(cacheKey) || "null") : null; } catch (e) {}
+  if (cached && cached.ok) { DATA = cached; render(DATA); }
   try {
     const url = `${API_URL}${API_URL.includes("?") ? "&" : "?"}g=${encodeURIComponent(TOKEN)}&_=${Date.now()}`;
-    DATA = await getJSON(url);
+    const fresh = await getJSON(url);
+    if (fresh && fresh.ok) { try { localStorage.setItem(cacheKey, JSON.stringify(fresh)); } catch (e) {} }
+    else { try { localStorage.removeItem(cacheKey); } catch (e) {} }
+    DATA = fresh;
   } catch (err) {
     console.error(err);
+    if (cached && cached.ok) return; // keep showing the cached page rather than an error
     DATA = { ok: false, error: "network", settings: DEMO.settings, schedule: DEMO.schedule, contacts: DEMO.contacts };
   }
   render(DATA);
@@ -697,6 +713,7 @@ function render(data) {
   const g = data.guest || null;
 
   document.title = g ? `${g.first_name}, your Grand Prix Weekend in Vegas · Hugo` : "Your Grand Prix Weekend in Vegas · Hugo";
+  const ln = $("#loading-note"); if (ln) ln.hidden = true;
 
   // hero
   const hi = $("#hi");
