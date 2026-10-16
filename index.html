@@ -207,9 +207,8 @@
   .cal summary { list-style: none; cursor: pointer; }
   .cal summary::-webkit-details-marker { display: none; }
   .cal[open] summary { background: rgba(255, 254, 249, 0.12); }
-  .cal-menu { position: absolute; left: 0; top: calc(100% + 8px);
-  }
-  .cal.flip .cal-menu { left: auto; right: 0; z-index: 20; min-width: 240px; background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: 14px; padding: 6px; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55); }
+  .cal-menu { position: absolute; left: 0; top: calc(100% + 8px); z-index: 20; min-width: 240px; background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: 14px; padding: 6px; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55); }
+  .cal.flip .cal-menu { left: auto; right: 0; }
   .cal-menu a { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 11px 12px; border-radius: 9px; text-decoration: none; font-weight: 600; font-size: 15px; }
   .cal-menu a:hover { background: rgba(255, 254, 249, 0.07); }
   .cal-menu a small { color: var(--muted); font-weight: 500; font-size: 12px; }
