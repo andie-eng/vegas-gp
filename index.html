@@ -209,7 +209,7 @@
   .cal[open] summary { background: rgba(255, 254, 249, 0.12); }
   .cal-menu { position: absolute; left: 0; top: calc(100% + 8px); z-index: 20; min-width: 240px; background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: 14px; padding: 6px; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55); }
   .cal.flip .cal-menu { left: auto; right: 0; }
-  .cal-menu a { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 11px 12px; border-radius: 9px; text-decoration: none; font-weight: 600; font-size: 15px; }
+  .cal-menu a { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; white-space: nowrap; padding: 11px 12px; border-radius: 9px; text-decoration: none; font-weight: 600; font-size: 15px; }
   .cal-menu a:hover { background: rgba(255, 254, 249, 0.07); }
   .cal-menu a small { color: var(--muted); font-weight: 500; font-size: 12px; }
 
@@ -440,7 +440,7 @@
             Add to my calendar
           </summary>
           <div class="cal-menu">
-            <a id="cal-apple" href="#">Apple Calendar <small>iPhone, iPad, Mac</small></a>
+            <a id="cal-apple" href="#">Apple Calendar <small>iPhone · Mac</small></a>
             <a id="cal-google" href="#" target="_blank" rel="noopener">Google Calendar</a>
             <a id="cal-outlook" href="#">Outlook</a>
             <a id="cal-file" href="#">Download the .ics file</a>
