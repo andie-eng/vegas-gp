@@ -203,6 +203,15 @@
   .travel-strip b { font-weight: 600; display: block; }
   .travel-strip small { color: var(--muted); font-size: 14px; }
   .small-print { font-size: 13px; color: var(--dim); margin-top: 18px; }
+  .cal { position: relative; }
+  .cal summary { list-style: none; cursor: pointer; }
+  .cal summary::-webkit-details-marker { display: none; }
+  .cal[open] summary { background: rgba(255, 254, 249, 0.12); }
+  .cal-menu { position: absolute; right: 0; top: calc(100% + 8px); z-index: 20; min-width: 240px; background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: 14px; padding: 6px; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55); }
+  .cal-menu a { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 11px 12px; border-radius: 9px; text-decoration: none; font-weight: 600; font-size: 15px; }
+  .cal-menu a:hover { background: rgba(255, 254, 249, 0.07); }
+  .cal-menu a small { color: var(--muted); font-weight: 500; font-size: 12px; }
+  @media (max-width: 760px) { .cal-menu { right: auto; left: 0; } }
 
   /* ---------- venue ---------- */
   .venue .card { display: grid; grid-template-columns: 1.1fr 1fr; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
@@ -425,10 +434,18 @@
           <p class="eyebrow">Schedule of events</p>
           <h2>Your weekend, night by night</h2>
         </div>
-        <button class="btn btn-ghost btn-sm" id="ics-btn" type="button">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M12 14v5M9.5 16.5h5"/></svg>
-          Add to my calendar
-        </button>
+        <details class="cal" id="cal">
+          <summary class="btn btn-ghost btn-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M12 14v5M9.5 16.5h5"/></svg>
+            Add to my calendar
+          </summary>
+          <div class="cal-menu">
+            <a id="cal-apple" href="#">Apple Calendar <small>iPhone, iPad, Mac</small></a>
+            <a id="cal-google" href="#" target="_blank" rel="noopener">Google Calendar</a>
+            <a id="cal-outlook" href="#">Outlook</a>
+            <a id="cal-file" href="#">Download the .ics file</a>
+          </div>
+        </details>
       </div>
       <div class="nights" id="nights"></div>
       <div class="travel-row" id="travel-days"></div>
@@ -823,7 +840,13 @@ function renderSchedule(items, S) {
   $("#nights").innerHTML = nights;
   $("#travel-days").innerHTML = travel;
   $("#tz-note").textContent = S.timezone_note || "";
-  $("#ics-btn").onclick = () => downloadICS(items, S);
+  const feedHttps = location.origin + location.pathname.replace(/[^/]*$/, "") + "grand-prix-weekend.ics";
+  const feedWebcal = feedHttps.replace(/^https?:/, "webcal:");
+  $("#cal-apple").href = feedWebcal;
+  $("#cal-outlook").href = feedWebcal;
+  $("#cal-google").href = "https://calendar.google.com/calendar/r?cid=" + encodeURIComponent(feedWebcal);
+  $("#cal-file").onclick = (e) => { e.preventDefault(); downloadICS(items, S); $("#cal").open = false; };
+  document.addEventListener("click", (e) => { const c = $("#cal"); if (c && c.open && !c.contains(e.target)) c.open = false; }, { once: false });
   const credits = photoCredits(items);
   $("#photo-credits").innerHTML = `Photography via <a href="https://unsplash.com" rel="noopener">Unsplash</a>${credits.length ? `; artist photos: ${credits.map(esc).join(" · ")} via Wikimedia Commons` : ""}.`;
 }
