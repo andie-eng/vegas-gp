@@ -8,7 +8,7 @@
 | clubhouse.jpg | HGV Zone clubhouse trackside at Elara |
 | hotels/elara.jpg | Elara, a Hilton Grand Vacations Club, at dusk |
 | hotels/polo-towers.jpg | Polo Towers, 3745 Las Vegas Blvd S (supplied by Andie, 16 Oct) |
-| race-pair.jpg | Photo band above the contacts (supplied by Andie, 19 Oct; replaced the Unsplash shot) |
+| band-start.jpg | Photo band above the contacts (supplied by Andie, 19 Oct; replaced the Unsplash shot) |
 
 These came from Hugo's event partners, not a stock library; confirm usage rights with HGV before the page goes to guests.
 
