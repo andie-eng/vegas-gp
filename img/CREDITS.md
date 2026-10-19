@@ -8,6 +8,7 @@
 | clubhouse.jpg | HGV Zone clubhouse trackside at Elara |
 | hotels/elara.jpg | Elara, a Hilton Grand Vacations Club, at dusk |
 | hotels/polo-towers.jpg | Polo Towers, 3745 Las Vegas Blvd S (supplied by Andie, 16 Oct) |
+| race-pair.jpg | Photo band above the contacts (supplied by Andie, 19 Oct; replaced the Unsplash shot) |
 
 These came from Hugo's event partners, not a stock library; confirm usage rights with HGV before the page goes to guests.
 
@@ -18,7 +19,6 @@ These came from Hugo's event partners, not a stock library; confirm usage rights
 | race-night.jpg | Clément Delacre | https://unsplash.com/photos/M5s9Ffs1KqU |
 | pool.jpg | Frugal Flyer | https://unsplash.com/photos/i8PoYjIp2so |
 | track-trails.jpg | Jesper Giortz-Behrens | https://unsplash.com/photos/yn8-sVBtys8 |
-| race-pair.jpg | Konara Bandara | https://unsplash.com/photos/St4FhPIbkBQ |
 | hotels/bellagio.jpg | David Vives | https://unsplash.com/photos/4C30OtQ6gNQ |
 | hotels/caesars-palace.jpg | Paul Cariou | https://unsplash.com/photos/NBSBsOfmE2U |
 | hotels/paris-las-vegas.jpg | Victor Pot | https://unsplash.com/photos/u5fwE1D-H2g |
